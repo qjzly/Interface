@@ -1,0 +1,108 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+	<!-- Blizzard -->
+	<Script file="Blizzard\Globals.lua"/>
+	<Script file="Blizzard\Fonts.lua"/>
+	<Script file="Blizzard\Colours.lua"/>
+	<Script file="Blizzard\Disable.lua"/>
+	<Script file="Blizzard\Errors.lua"/>
+	<Script file="Blizzard\Loot.lua"/>
+	<Script file="Blizzard\LootRoll.lua"/>
+	<Script file="Blizzard\Bags.lua"/>
+	<Script file="Blizzard\ColorPicker.lua"/>
+	<Script file="Blizzard\ArchaeologyBar.lua"/>
+	<Script file="Blizzard\Mail.lua"/>
+	<Script file="Blizzard\Marking.lua"/>
+	<Script file="Blizzard\MirrorBars.lua"/>
+	<Script file="Blizzard\MoveBlizzFrames.lua"/>
+	<Script file="Blizzard\PaperDollFrame.lua"/>
+	<Script file="Blizzard\PetBattles.lua"/>
+	<Script file="Blizzard\TradeSkill.lua"/>
+	<Script file="Blizzard\WorldMarker.lua"/>
+	<Script file="Blizzard\WorldStateFrame.lua"/>
+
+	<!-- Unitframes -->
+	<Script file="UnitFrames\unitframes.lua"/>
+	<Script file="UnitFrames\arena.lua"/>
+	<Script file="UnitFrames\focuser.lua"/>
+	<Script file="UnitFrames\unitsound.lua"/>
+
+	<!-- ActionBars -->
+	<Script file="ActionBars\core.lua"/>
+	<Script file="ActionBars\blizzard.lua"/>
+	<Script file="ActionBars\bars.lua"/>
+	<Script file="ActionBars\layout.lua"/>
+	<Script file="ActionBars\style.lua"/>
+	<Script file="ActionBars\rangecolor.lua"/>
+	<Script file="ActionBars\HoverBind.lua"/>
+	<Script file="ActionBars\clickcast.lua"/>
+
+	<!-- Announcements -->
+	<Script file="Announcements\interrupt.lua"/>
+	<Script file="Announcements\rarealert.lua"/>
+	<Script file="Announcements\SaySapped.lua"/>
+
+	<!-- Auras -->
+	<Script file="Auras\Auras.lua"/>
+
+	<!-- Automation -->
+	<Script file="Automation\automation.lua"/>
+	<Script file="Automation\events.lua"/>
+	<Script file="Automation\hiddenraidnames.lua"/>
+	<Script file="Automation\autoscreenshot.lua"/>
+
+	<!-- Chat -->
+	<Script file="Chat\bubbles.lua"/>
+	<Script file="Chat\chat.lua"/>
+	<Script file="Chat\chattabs.lua"/>
+	<Script file="Chat\ChatItemLevel.lua"/>
+	<Script file="Chat\SpamageMeters.lua"/>
+	<Script file="Chat\WhisperSound.lua"/>
+
+	<!-- Maps -->
+	<Script file="Maps\WorldMap.lua"/>
+	<Script file="Maps\MiniMap.lua"/>
+	<Script file="Maps\Foglight.lua"/>
+
+	<!-- Quests -->
+	<Script file="Quests\ObjectiveTracker.lua"/>
+	<Script file="Quests\QuestLog.lua"/>
+
+	<!-- Tooltip -->
+	<Script file="Tooltip\Tip.lua"/>
+	<Script file="Tooltip\MultiItem.lua"/>
+	<Script file="Tooltip\Hover.lua"/>
+	<Script file="Tooltip\IDCard.lua"/>
+	<Script file="Tooltip\IDTip.lua"/>
+	<Script file="Tooltip\ilvlSpec.lua"/>
+
+	<!-- InfoBar -->
+	<Script file="InfoBar\MenuBar.lua"/>
+	<Script file="InfoBar\MicroMenu.lua"/>
+	<Script file="InfoBar\Stats.lua"/>
+
+	<!-- Miscellaneous -->
+	<Script file="Miscellaneous\Align.lua"/>
+	<Script file="Miscellaneous\AlreadyKnown.lua"/>
+	<Script file="Miscellaneous\BgSpamFix.lua"/>
+	<Script file="Miscellaneous\BgSpecIcon.lua"/>
+	<Script file="Miscellaneous\CDPulse.lua"/>
+	<Script file="Miscellaneous\ExpArtifactHonorBar.lua"/>
+	<Script file="Miscellaneous\FasterCamera.lua"/>
+	<Script file="Miscellaneous\FlashCursor.lua"/>
+	<Script file="Miscellaneous\MerchantItemlevel.lua"/>
+	<Script file="Miscellaneous\ncShadow.lua"/>
+	<Script file="Miscellaneous\QueueTimer.lua"/>
+	<Script file="Miscellaneous\reputation.lua"/>
+	<Script file="Miscellaneous\role.lua"/>
+	<Script file="Miscellaneous\SafeQueue.lua"/>
+	<Script file="Miscellaneous\SpeedyLoad.lua"/>
+	<Script file="Miscellaneous\tabbinder.lua"/>
+	<Script file="Miscellaneous\tekkrush.lua"/>
+	<Script file="Miscellaneous\ThreatMeter.lua"/>
+	<Script file="Miscellaneous\UIFader.lua"/>
+
+	<!-- Skins -->
+	<Script file="Skins\Bugger.lua"/>
+	<Script file="Skins\DBM_GUI.lua"/>
+	<Script file="Skins\DBM_Bars.lua"/>
+</Ui>

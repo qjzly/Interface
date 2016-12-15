@@ -1,0 +1,7 @@
+## Interface: 70100
+## Title: SkadaFormat
+## Title-zhCN: SkadaFormat
+## Notes: skada单位更改
+## RequiredDeps: Skada
+
+SkadaFormat.lua

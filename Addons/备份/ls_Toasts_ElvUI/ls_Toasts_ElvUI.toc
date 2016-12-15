@@ -1,0 +1,12 @@
+## Interface: 70100
+## Author: Homax
+## Version: 1.1
+## Title: |cff1a9fc0ls:|r Toasts |cff1784d1ElvUI|r
+## Notes: Skins ls: Toasts for ElvUI. Requires Toast scale to be set to 1.
+## RequiredDeps: ls_Toasts
+
+ls_Toasts_ElvUI.lua
+ 
+ 
+## X-Tukui-ProjectID: 317
+## X-Tukui-ProjectFolders: ls_Toasts_ElvUI

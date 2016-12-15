@@ -1,0 +1,10 @@
+tag 62c2c0372773b138cb587cf429f989dfcd381ca5 1.0.7
+Author:	Benjamin Staneck <staneck@gmail.com>
+Date:	Tue Dec 6 01:41:04 2016 +0100
+
+commit 2663bbe0abe64cc328f83ba94e8e21102af797fc
+Author: Benjamin Staneck <staneck@gmail.com>
+Date:   Tue Oct 25 21:00:31 2016 +0200
+
+    add Cursor Size
+

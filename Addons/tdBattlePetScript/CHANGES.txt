@@ -1,0 +1,12 @@
+tag 74539af1c1f82eebaccd7c81edaa23a90ce6a3f8 70100.07
+Author:	DengSir <tdaddon@163.com>
+Date:	Fri Dec 2 18:02:17 2016 +0800
+
+''
+
+commit 23c8a5161e53faf1fef4df75d0957876e318e712
+Author: DengSir <tdaddon@163.com>
+Date:   Fri Dec 2 18:00:54 2016 +0800
+
+    enable-nolib-creation
+

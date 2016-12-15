@@ -1,0 +1,18 @@
+------------------------------------------------------------------------
+r25 | ahak | 2016-11-26 20:39:13 -0600 (Sat, 26 Nov 2016) | 1 line
+Changed paths:
+   A /trunk/.pkgmeta
+   A /trunk/AlreadyKnown.lua
+   A /trunk/AlreadyKnown.toc
+
+- Trying to learn this new CurseForge stuff
+------------------------------------------------------------------------
+r24 | ahak | 2016-11-26 20:39:03 -0600 (Sat, 26 Nov 2016) | 1 line
+Changed paths:
+   D /trunk/.pkgmeta
+   D /trunk/AlreadyKnown.lua
+   D /trunk/AlreadyKnown.toc
+
+- Trying to learn this new CurseForge stuff
+------------------------------------------------------------------------
+

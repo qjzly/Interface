@@ -1,0 +1,12 @@
+tag a140b60b4bdc6b55c9047b1bc06e4885da27458b v1.3
+Author:	Ironi <jessemanelius@gmail.com>
+Date:	Sun Dec 4 02:02:04 2016 +0200
+
+tagging as v1.3
+
+commit 9804e5ca0a29d6f99ecd7fca211afc6c5499c7be
+Author: Ironi <jessemanelius@gmail.com>
+Date:   Sun Dec 4 02:01:45 2016 +0200
+
+    automatically use keystone when opening the keystone window
+

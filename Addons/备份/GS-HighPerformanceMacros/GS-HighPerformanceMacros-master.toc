@@ -1,0 +1,26 @@
+## Interface: 70100
+## Title: |cffff0000GS-E:|r |cFF00D1FFWLM High Performance Macros|r - Straight from GitHub
+## Notes: These macros have been identified by the wowlazymacros.com community as High Performace Macros.  This version has been loaded Direct from GitHub
+## Author: TimothyLuke
+## Version: GH v1.6
+## SavedVariables: GSWLMHPOptions
+## RequiredDeps: GS-Core
+## LoadOnDemand: 1
+## X-Curse-Packaged-Version: r20161031220248
+## X-Curse-Project-Name: GS-E WLM High Performance Macros
+## X-Curse-Project-ID: gs-e-wlm-highperformance-macros
+## X-Curse-Repository-ID: wow/gs-e-wlm-highperformance-macros/mainline
+
+Macros\DeathKnight.lua
+Macros\Druid.lua
+Macros\DemonHunter.lua
+Macros\Hunter.lua
+Macros\Mage.lua
+Macros\Monk.lua
+Macros\Paladin.lua
+Macros\Priest.lua
+Macros\Rogue.lua
+Macros\Shaman.lua
+Macros\Warlock.lua
+Macros\Warrior.lua
+loaded.lua

@@ -1,0 +1,19 @@
+## Interface: 70100
+## Title: PetTracker Journal
+## Notes: Load on demand modification for the Pet Journal.
+## Author: Jaliborc (João Cardoso)
+## X-Category: Battle Pets
+## Version: 7.1.3
+
+## Dependencies: PetTracker
+## LoadWith: Blizzard_Collections
+## LoadOnDemand: 1
+
+..\PetTracker\Libs\SecureTabs-2.0\SecureTabs-2.0.lua
+
+..\PetTracker\Combat\SlotBorder.xml
+..\PetTracker\Combat\Slot.xml
+..\PetTracker\Combat\Slot.lua
+
+Components\Include.xml
+Features\Include.xml

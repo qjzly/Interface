@@ -1,0 +1,20 @@
+## Interface: 70100
+## X-BigfootType: 7
+## X-BigfootDesc: OneClickBuyOut插件，在拍卖行时，使用SHIFT+右键点击物品可以直接一口价拍下物品。
+## Title: OneClickBuyOut
+#@debug@
+# ## Title: |cffff0088EBG|r OneClickBuyOut
+#@end-debug@
+## LoadOnDemand: 1
+## LoadWith: Blizzard_AuctionUI
+## SavedVariables: OCBO_AucAdvance_Notified, OCBO_NoBuyout
+## OptionalDeps: BaudAuction, Auc-Advanced
+## Version: v201210250038
+## Author: egingell
+## X-Curse-Packaged-Version: v201210250038
+## X-Curse-Project-Name: OneClickBuyOut
+## X-Curse-Project-ID: ocbo
+## X-Curse-Repository-ID: wow/ocbo/mainline
+
+BrowseButton.lua
+OneClickBuyOut.lua

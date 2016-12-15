@@ -1,0 +1,14 @@
+## Interface: 70100
+## Title: |cffF5FFFAFreeUI|r.|cffFF34B3Fluffy|r |cffFFFACDOptions|r
+## Notes: Options GUI for FreeUI.
+## Author: Haleth/Lightsword (Modified by Dostoyevsky@烈焰峰)
+## Version: 70100.04
+## SavedVariables: FreeUIOptionsGlobal, FreeUIOptions
+## SavedVariablesPerCharacter: FreeUIOptionsPerChar
+
+freeui_options.lua
+
+localization\english.lua
+localization\chinese.lua
+
+frames.lua

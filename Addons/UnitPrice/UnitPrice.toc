@@ -1,0 +1,16 @@
+## Interface: 70000
+## Title: UnitPrice
+## Notes: Shows the price of a single item in the Auction House.
+## Notes-zhCN: 在拍卖场显示物品单价
+## Notes-zhTW: 在拍賣場顯示物品單價
+## Author: xbeeps
+## LoadOnDemand: 1
+## LoadWith: Blizzard_AuctionUI
+## X-Catagory: Auction
+## SavedVariables: UnitPriceShowBid, UnitPriceShowBuyout
+## X-Curse-Packaged-Version: 7.0
+## X-Curse-Project-Name: UnitPrice
+## X-Curse-Project-ID: unit-price
+## X-Curse-Repository-ID: wow/unit-price/mainline
+
+UnitPrice.lua

@@ -1,0 +1,103 @@
+<Ui>
+
+	<Button name="RematchMenuButtonTemplate" virtual="true">
+		<Size x="200" y="16"/>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture parentKey="highlight" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="-2" y="0"/>
+						<Anchor point="BOTTOMRIGHT" x="2" y="0"/>
+					</Anchors>
+					<Color r=".25" g=".5" b="1" a=".25"/>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<Texture parentKey="check" file="Interface\Common\UI-DropDownRadioChecks">
+					<Size x="16" y="16"/>
+					<Anchors>
+						<Anchor point="LEFT"/>
+					</Anchors>
+					<TexCoords left="0" right="0.5" top="0.5" bottom="1.0"/>
+				</Texture>
+				<Texture parentKey="icon" file="Interface\Icons\INV_Misc_QuestionMark">
+					<Size x="14" y="14"/>
+					<Anchors>
+						<Anchor point="LEFT"/>
+					</Anchors>
+					<TexCoords left="0.075" right="0.925" top="0.075" bottom="0.925"/>
+				</Texture>
+				<FontString parentKey="text" inherits="GameFontHighlightSmall" justifyH="LEFT">
+					<Size x="0" y="20"/>
+					<Anchors>
+						<Anchor point="LEFT"/>
+					</Anchors>
+				</FontString>
+				<Texture parentKey="arrow" file="Interface\Buttons\Arrow-Up-Up">
+					<Size x="16" y="16"/>
+					<Anchors>
+						<Anchor point="RIGHT" x="8" y="-1"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+	</Button>		
+
+	<Frame name="RematchMenuTemplate" frameStrata="FULLSCREEN_DIALOG" enableMouse="true" clampedToScreen="true" inherits="RematchBaseFrameTemplate" virtual="true">
+		<Layers>
+			<Layer level="BACKGROUND" textureSubLevel="-1">
+				<Texture>
+					<Anchors>
+						<Anchor point="TOPLEFT" x="3" y="-3"/>
+						<Anchor point="BOTTOMRIGHT" x="-3" y="3"/>
+					</Anchors>
+					<Color r=".2" g=".2" b=".2"/>
+				</Texture>
+			</Layer>
+			<Layer level="BACKGROUND">
+				<Texture parentKey="shadow" file="Interface\Common\ShadowOverlay-Corner" setAllPoints="true" alpha="1">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="3" y="-3"/>
+						<Anchor point="BOTTOMRIGHT" x="-3" y="3"/>
+					</Anchors>
+					<TexCoords left="0" right="1" top="0" bottom="1"/>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame parentKey="title" useParentLevel="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" x="3" y="-3"/>
+					<Anchor point="BOTTOMRIGHT" relativePoint="TOPRIGHT" x="-3" y="-19"/>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND" textureSubLevel="1">
+						<Texture file="Interface\PetBattles\PetJournal" setAllPoints="true">
+							<TexCoords left="0.189453125" right="0.658203125" top="0.486328125" bottom="0.5708203125"/>
+						</Texture>
+					</Layer>
+					<Layer level="BORDER">
+						<Texture file="Interface\PetBattles\_PetJournalHorizTile" tile="horiz">
+							<Size x="0" y="6"/>
+							<Anchors>
+								<Anchor point="BOTTOMLEFT" x="0" y="-3"/>
+								<Anchor point="BOTTOMRIGHT" x="0" y="-3"/>
+							</Anchors>
+							<TexCoords left="0" right="1" top="0.0078125" bottom="0.078125"/>
+						</Texture>
+					</Layer>
+					<Layer level="ARTWORK">
+						<FontString parentKey="text" inherits="GameFontHighlightSmall" justifyH="CENTER" justifyV="CENTER">
+							<Anchors>
+								<Anchor point="TOPLEFT" x="2" y="-2"/>
+								<Anchor point="BOTTOMRIGHT" x="-2" y="2"/>
+							</Anchors>
+							<Color r="1" g=".82" b=".5"/>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
+		</Frames>
+	</Frame>
+
+</Ui>

@@ -1,0 +1,14 @@
+## Interface: 70100
+## Author: p3lim
+## Version: 70100.42-Release
+## Title: Molinari
+## Notes: One-click Milling, Prospecting, Disenchanting and Lockpicking!
+## OptionalDeps: LibProcessable, Wasabi
+## SavedVariables: MolinariBlacklistDB
+
+libs\Wasabi\embed.xml
+libs\LibProcessable\embed.xml
+
+Localization.lua
+Config.lua
+Molinari.lua

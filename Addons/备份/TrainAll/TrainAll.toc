@@ -1,0 +1,11 @@
+## Interface: 70100
+## Title: Train All v1.1
+## Version: 1.1
+## Author: SDPhantom
+
+## LoadOnDemand: 1
+## LoadWith: Blizzard_TrainerUI
+
+## Notes: Enables a "Train All" button in the trainer window.
+
+TrainAll.lua

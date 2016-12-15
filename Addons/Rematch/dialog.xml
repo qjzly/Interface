@@ -1,0 +1,472 @@
+<Ui>
+
+	<Button name="RematchLevelingCarouselButtonTemplate" inherits="RematchBaseSlotTemplate" virtual="true">
+		<Size x="42" y="42"/>
+		<Layers>
+			<Layer level="ARTWORK">
+				<!-- border is colored for the pet's rarity -->
+				<Texture parentKey="border" file="Interface\AddOns\Rematch\textures\border" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="1" y="-1"/>
+						<Anchor point="BOTTOMRIGHT" x="-1" y="1"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnEnter>
+				Rematch.PetOnEnter(self)
+			</OnEnter>
+			<OnLeave>
+				Rematch.PetOnLeave(self)
+			</OnLeave>
+			<OnClick>
+				Rematch.LevelingCarouselPetOnClick(self)
+			</OnClick>
+		</Scripts>				
+	</Button>
+
+	<Frame name="RematchDialog" parent="Rematch" parentKey="dialog" forceAlpha="true" clampedToScreen="true" frameStrata="HIGH" inherits="RematchBaseFrameTemplate,RematchDragTemplate" hidden="true">
+		<Size x="250" y="300"/>
+		<Anchors>
+			<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMLEFT" x="3" y="0"/>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND" textureSubLevel="-1">
+				<!-- rock: grey background over most of dialog -->
+				<Texture parentKey="rock" file="Interface\FrameGeneral\UI-Background-Rock" horizTile="true" vertTile="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="3" y="-3"/>
+						<Anchor point="BOTTOMRIGHT" x="-3" y="31"/>
+					</Anchors>
+				</Texture>
+				<!-- anon: grey background over confirm area -->
+				<Texture file="Interface\FrameGeneral\UI-Background-Rock" horizTile="true" vertTile="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" x="3" y="33"/>
+						<Anchor point="BOTTOMRIGHT" x="-3" y="3"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="BACKGROUND">
+				<!-- shadow: dark accent over all of rock -->
+				<Texture parentKey="shadow" file="Interface\Common\ShadowOverlay-Corner" setAllPoints="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="3" y="-3"/>
+						<Anchor point="BOTTOMRIGHT" x="-3" y="31"/>
+					</Anchors>
+					<TexCoords left="1" right="0" top="0" bottom="1"/>
+				</Texture>
+				<!-- anon: grey background over confirm area -->
+				<Texture file="Interface\Common\ShadowOverlay-Corner" setAllPoints="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" x="3" y="33"/>
+						<Anchor point="BOTTOMRIGHT" x="-3" y="3"/>
+					</Anchors>
+					<TexCoords left="1" right="0" top="0" bottom="1"/>
+				</Texture>
+			</Layer>
+			<Layer level="BORDER">
+				<!-- anon: line above confirm area -->
+				<Texture file="Interface\PetBattles\_PetJournalHorizTile" tile="horiz">
+					<Size x="243" y="6"/>
+					<TexCoords left="0" right="1" top="0.0078125" bottom="0.078125"/>
+					<Anchors>
+						<Anchor point="BOTTOM" x="0" y="31"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<!-- prompt: text in confirm area -->
+				<FontString parentKey="prompt" inherits="GameFontHighlight" justifyH="CENTER" justifyV="CENTER">
+					<Size x="182" y="28"/>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" x="7" y="4"/>
+					</Anchors>
+				</FontString>
+				<!-- text: text in main area -->
+				<FontString parentKey="text" inherits="GameFontNormal" justifyH="CENTER" justifyV="CENTER" hidden="true"/>
+				<!-- textTest: temporary texture for seeing bounding box to text -->
+				<Texture parentKey="textTest">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeKey="$parent.text"/>
+						<Anchor point="BOTTOMRIGHT" relativeKey="$parent.text"/>
+					</Anchors>
+					<Color r="1" g="1" b="1" a=".25"/>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<!-- blackout: dark opaque texture over main window when dialog appears -->
+			<Frame parentKey="blackout" inherits="RematchDragTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="Rematch" x="4" y="-102"/>
+					<Anchor point="BOTTOMRIGHT" relativeTo="Rematch" x="-4" y="4"/>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture setAllPoints="true">
+							<Color r="0" g="0" b="0" a=".6"/>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Frame>
+
+			<!-- header: at top of main window always visible -->
+			<Frame parentKey="header" inherits="RematchHeaderTemplate">
+				<Anchors>
+					<Anchor point="CENTER" relativePoint="TOP" x="0" y="-3"/>
+				</Anchors>
+				<Frames>
+					<!-- extra frame necessary to make header draggable -->
+					<Frame inherits="RematchDragTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeKey="$parent.headerF"/>
+							<Anchor point="BOTTOMRIGHT" relativeKey="$parent.headerF"/>
+						</Anchors>
+					</Frame>
+				</Frames>
+			</Frame>
+			<!-- cancel: red X button in confirm area -->
+			<Button parentKey="cancel" inherits="RematchToolbarButtonTemplate">
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" x="-2" y="2"/>
+				</Anchors>
+				<KeyValues>
+					<KeyValue key="defaultIcon" value="Interface\AddOns\Rematch\textures\no"/>
+				</KeyValues>
+			</Button>
+			<!-- accept: green checkmark button in confirm area -->
+			<Button parentKey="accept" inherits="RematchToolbarButtonTemplate">
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" x="-28" y="2"/>
+				</Anchors>
+				<KeyValues>
+					<KeyValue key="defaultIcon" value="Interface\AddOns\Rematch\textures\yes"/>
+				</KeyValues>
+				<Scripts>
+					<PreClick>
+						Rematch.dialog.runOnCancel = nil
+						Rematch:HideDialogs()
+					</PreClick>
+				</Scripts>
+			</Button>
+			<!-- slot: single icon (inherits PetSlot for mouseover, remember to nil petID) -->
+			<Button parentKey="slot" inherits="RematchPetSlotTemplate" hidden="true">
+				<Size x="40" y="40"/>
+			</Button>
+			<EditBox parentKey="editBox" autoFocus="true" inherits="RematchInputBoxTemplate" hidden="true">
+				<Size x="160" y="20"/>
+				<Scripts>
+					<OnEscapePressed>
+						if Rematch:IsMenuOpen() then
+							Rematch:HideMenu()
+						else
+							self:GetParent():Hide()
+						end
+					</OnEscapePressed>
+					<OnEnterPressed>
+						if self:GetParent().accept:IsEnabled() then
+							self:GetParent().accept:Click()
+						end
+					</OnEnterPressed>
+				</Scripts>
+			</EditBox>
+			<!-- warning: frame with warning icon and text (warning.text) -->
+			<Frame parentKey="warning" hidden="true">
+				<Size x="180" y="22"/>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture file="Interface\DialogFrame\UI-Dialog-Icon-AlertNew">
+							<Size x="22" y="22"/>
+							<Anchors>
+								<Anchor point="LEFT"/>
+							</Anchors>
+						</Texture>
+						<FontString parentKey="text" inherits="GameFontHighlightSmall">
+							<Anchors>
+								<Anchor point="RIGHT"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnShow>
+						self:SetWidth(self.text:GetStringWidth()+24)
+					</OnShow>
+				</Scripts>
+			</Frame>
+			<!-- team: 3 pets+abilities -->
+			<Frame parentKey="team" inherits="RematchTeamTemplate"/>
+
+			<!-- tabPicker: combo box to change tabs while dialog is open -->
+			<Button parentKey="tabPicker" inherits="RematchComboBoxTemplate" hidden="true">
+				<Size x="130" y="32"/>
+				<Scripts>
+					<OnShow>
+						self.text:SetText(RematchSettings.TeamGroups[RematchSettings.SelectedTab][1])
+						self.icon:SetTexture(RematchSettings.TeamGroups[RematchSettings.SelectedTab][2])
+					</OnShow>
+				</Scripts>
+			</Button>
+
+			<!-- multiLine: multi-line editbox -->
+			<ScrollFrame parentKey="multiLine" name="RematchDialogMultiLineFrame" inherits="MinimalScrollFrameTemplate">
+				<Size x="192" y="55"/>
+				<ScrollChild>
+					<EditBox parentKey="editBox" multiLine="true" autoFocus="true">
+						<Size x="170" y="55"/>
+						<FontString inherits="SystemFont_Shadow_Small2"/>
+						<Scripts>
+							<OnEscapePressed>
+								if Rematch:IsMenuOpen() then
+									Rematch:HideMenu()
+								else
+									self:GetParent():GetParent():Hide()
+								end
+							</OnEscapePressed>
+							<OnCursorChanged>
+								ScrollingEdit_OnCursorChanged(self, x, y, w, h)
+							</OnCursorChanged>
+							<OnUpdate>
+								ScrollingEdit_OnUpdate(self, elapsed, self:GetParent())
+							</OnUpdate>
+						</Scripts>
+					</EditBox>
+				</ScrollChild>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture parentKey="topleft" file="Interface\Common\Common-Input-Border-TL">
+							<Size x="8" y="8"/>
+							<Anchors>
+								<Anchor point="TOPLEFT" x="-5" y="5"/>
+							</Anchors>
+						</Texture>
+						<Texture parentKey="topright" file="Interface\Common\Common-Input-Border-TR">
+							<Size x="8" y="8"/>
+							<Anchors>
+								<Anchor point="TOPRIGHT" x="5" y="5"/>
+							</Anchors>
+						</Texture>
+						<Texture file="Interface\Common\Common-Input-Border-T">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeKey="$parent.topleft" relativePoint="TOPRIGHT"/>
+								<Anchor point="BOTTOMRIGHT" relativeKey="$parent.topright" relativePoint="BOTTOMLEFT"/>
+							</Anchors>
+						</Texture>
+						<Texture parentKey="bottomleft" file="Interface\Common\Common-Input-Border-BL">
+							<Size x="8" y="8"/>
+							<Anchors>
+								<Anchor point="BOTTOMLEFT" x="-5" y="-5"/>
+							</Anchors>
+						</Texture>
+						<Texture parentKey="bottomright" file="Interface\Common\Common-Input-Border-BR">
+							<Size x="8" y="8"/>
+							<Anchors>
+								<Anchor point="BOTTOMRIGHT" x="5" y="-5"/>
+							</Anchors>
+						</Texture>
+						<Texture file="Interface\Common\Common-Input-Border-B">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeKey="$parent.bottomleft" relativePoint="TOPRIGHT"/>
+								<Anchor point="BOTTOMRIGHT" relativeKey="$parent.bottomright" relativePoint="BOTTOMLEFT"/>
+							</Anchors>
+						</Texture>
+						<Texture file="Interface\Common\Common-Input-Border-L">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeKey="$parent.topleft" relativePoint="BOTTOMLEFT"/>
+								<Anchor point="BOTTOMRIGHT" relativeKey="$parent.bottomleft" relativePoint="TOPRIGHT"/>
+							</Anchors>
+						</Texture>
+						<Texture file="Interface\Common\Common-Input-Border-R">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeKey="$parent.topright" relativePoint="BOTTOMLEFT"/>
+								<Anchor point="BOTTOMRIGHT" relativeKey="$parent.bottomright" relativePoint="TOPRIGHT"/>
+							</Anchors>
+						</Texture>
+						<Texture file="Interface\Common\Common-Input-Border-M">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeKey="$parent.topleft" relativePoint="BOTTOMRIGHT"/>
+								<Anchor point="BOTTOMRIGHT" relativeKey="$parent.bottomright" relativePoint="TOPLEFT"/>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						local scrollBar = _G[self:GetName().."ScrollBar"]
+						scrollBar:SetPoint("TOPLEFT",self,"TOPRIGHT",-17,-19)
+						scrollBar:SetPoint("BOTTOMLEFT",self,"BOTTOMRIGHT",-17,17)
+						local upButton = _G[scrollBar:GetName().."ScrollUpButton"]
+						local downButton = _G[scrollBar:GetName().."ScrollDownButton"]
+						scrollBar.trackBG:SetPoint("TOPLEFT",upButton)
+						scrollBar.trackBG:SetPoint("BOTTOMRIGHT",downButton)
+						downButton:SetPoint("BOTTOM",0,-19)
+						upButton:SetPoint("TOP",0,19)
+					</OnLoad>
+				</Scripts>
+			</ScrollFrame>
+			<Button>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent.multiLine"/>
+					<Anchor point="BOTTOMRIGHT" relativeKey="$parent.multiLine"/>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						self:GetParent().multiLine.editBox:SetFocus()
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<!-- I'm going to hate myself for nameing CheckButton checkBox -->
+			<CheckButton parentKey="checkBox" inherits="RematchCheckButtonTemplate"/>
+
+			<EditBox parentKey="numberEditBox" numeric="true" inherits="RematchInputBoxTemplate">
+				<Size x="72" y="20"/>
+				<Frames>
+					<Button parentKey="clear" inherits="RematchClearButtonTemplate">
+						<Anchors>
+							<Anchor point="RIGHT" x="6" y="1"/>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								local parent = self:GetParent()
+								parent:SetText("")
+								Rematch.dialog.editBox:SetFocus(true)
+							</OnClick>
+						</Scripts>
+					</Button>
+				</Frames>
+				<Scripts>
+					<OnEnter>
+						Rematch.ShowTooltip(self)
+					</OnEnter>
+					<OnLeave>
+						Rematch:HideTooltip()
+					</OnLeave>
+					<OnEnterPressed>
+						Rematch.dialog.editBox:SetFocus(true)
+					</OnEnterPressed>
+					<OnEscapePressed>
+						Rematch.dialog.editBox:SetFocus(true)
+					</OnEscapePressed>
+					<OnShow>
+						C_Timer.After(0,function() self:SetCursorPosition(0) end) -- TODO: why is this needed?!
+					</OnShow>
+				</Scripts>
+			</EditBox>
+
+			<!-- levelingCarousel is a carousel UI for picking the top leveling pet -->
+			<Frame parentKey="levelingCarousel" hidden="true" inherits="RematchInsetTemplate">
+				<Size x="170" y="56"/>
+				<Anchors>
+					<Anchor point="CENTER"/>
+				</Anchors>
+				<Frames>
+					<Button parentKey="left" inherits="RematchToolbarButtonTemplate">
+						<Anchors>
+							<Anchor point="RIGHT" relativePoint="LEFT" x="0" y="-2"/>
+						</Anchors>
+						<KeyValues>
+							<KeyValue key="defaultIcon" value="Interface\Icons\misc_arrowleft"/>
+							<KeyValue key="nopreclick" value="true"/>
+						</KeyValues>
+						<Scripts>
+							<OnClick>
+								Rematch:LevelingCarouselSpin(-1,0.075)
+							</OnClick>
+						</Scripts>
+					</Button>
+					<Button parentKey="right" inherits="RematchToolbarButtonTemplate">
+						<Anchors>
+							<Anchor point="LEFT" relativePoint="RIGHT" x="0" y="-2"/>
+						</Anchors>
+						<KeyValues>
+							<KeyValue key="defaultIcon" value="Interface\Icons\misc_arrowright"/>
+							<KeyValue key="nopreclick" value="true"/>
+						</KeyValues>
+						<Scripts>
+							<OnClick>
+								Rematch:LevelingCarouselSpin(1,0.075)
+							</OnClick>
+						</Scripts>
+					</Button>
+					<ScrollFrame parentKey="carousel">
+						<Anchors>
+							<Anchor point="TOPLEFT" x="6" y="0"/>
+							<Anchor point="BOTTOMRIGHT" x="-6" y="0"/>
+						</Anchors>
+						<ScrollChild>
+							<Frame parentKey="child">
+								<Size x="164" y="56"/>
+								<Frames>
+									<Button parentArray="pets" inherits="RematchLevelingCarouselButtonTemplate">
+										<Size x="42" y="42"/>
+										<Anchors>
+											<Anchor point="CENTER"/>
+										</Anchors>
+										<Layers>
+											<Layer level="ARTWORK" textureSubLevel="1">
+												<!-- gold border shown if pet is the leveling pet -->
+												<Texture parentKey="leveling" file="Interface\PetBattles\PetBattle-GoldSpeedFrame">
+													<Anchors>
+														<Anchor point="TOPLEFT" x="-1" y="1"/>
+														<Anchor point="BOTTOMRIGHT" x="1" y="-1"/>
+													</Anchors>
+													<TexCoords left="0.1171875" right="0.7421875" top="0.1171875" bottom="0.734375"/>
+												</Texture>
+											</Layer>
+											<Layer level="OVERLAY">
+												<!-- background to level -->
+												<Texture parentKey="levelBG" file="Interface\PetBattles\PetJournal">
+													<Size x="18" y="18"/>
+													<Anchors>
+														<Anchor point="BOTTOMRIGHT" x="1" y="-1"/>
+													</Anchors>
+													<TexCoords left="0.06835938" right="0.10937500" top="0.02246094" bottom="0.04296875"/>	
+												</Texture>
+												<!-- level text -->
+												<FontString parentKey="level" font="SystemFont_Tiny" justifyH="CENTER" justifyV="CENTER">
+													<Size x="0" y="12"/>
+													<Anchors>
+														<Anchor point="CENTER" relativePoint="BOTTOMRIGHT" x="-7" y="7"/>
+													</Anchors>
+													<Color r="1" g=".82" b="0"/>
+												</FontString>
+											</Layer>
+										</Layers>
+									</Button>
+									<Button parentArray="pets" inherits="RematchLevelingCarouselButtonTemplate"/>
+									<Button parentArray="pets" inherits="RematchLevelingCarouselButtonTemplate"/>
+									<Button parentArray="pets" inherits="RematchLevelingCarouselButtonTemplate"/>
+									<Button parentArray="pets" inherits="RematchLevelingCarouselButtonTemplate"/>
+									<Button parentArray="pets" inherits="RematchLevelingCarouselButtonTemplate"/>
+									<Button parentArray="pets" inherits="RematchLevelingCarouselButtonTemplate"/>
+								</Frames>
+							</Frame>
+						</ScrollChild>
+						<Scripts>
+							<OnMouseWheel>
+								local parent = self:GetParent()
+								if not parent:GetScript("OnUpdate") then -- if we're not moving
+									if delta==1 then
+										self:GetParent().left:Click()
+									else
+										self:GetParent().right:Click()
+									end
+								end
+							</OnMouseWheel>
+						</Scripts>
+					</ScrollFrame>
+				</Frames>
+			</Frame>
+
+		</Frames>
+		<Scripts>
+			<OnHide>
+				Rematch.DialogOnHide(self)
+			</OnHide>
+		</Scripts>
+	</Frame>
+
+</Ui>

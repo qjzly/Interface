@@ -1,0 +1,7 @@
+Ovale Spell Priority 7.1.4.1
+============================
+
+Changes from version 7.1.4.0:
+-----------------------------
+
+-   Fix bug with PTR function

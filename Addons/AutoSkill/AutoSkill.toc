@@ -1,0 +1,19 @@
+## Interface: 50200
+## Title: |cFFBF00FF[H]|r 宠物对战自动模块
+## Notes: HPetBattleAny测试模块
+## Author: Qshine
+## Author-zhCN: 上官晓雾
+## Author-zhTW: 上官曉霧
+## SavedVariables: AutoSkillSaved
+
+## Version: 1.54
+
+## X-Date: 2013-05-09
+
+Function.lua
+AutoSkill.lua
+Custom.lua
+CustomDLN.lua
+CustomYAOSAI.lua
+
+modules\Customs.xml

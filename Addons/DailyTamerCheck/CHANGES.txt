@@ -1,0 +1,9 @@
+------------------------------------------------------------------------
+r7 | Saregon | 2016-12-11 10:36:29 -0600 (Sun, 11 Dec 2016) | 1 line
+Changed paths:
+   M /trunk/DailyTamerCheck.lua
+   M /trunk/DailyTamerCheck.toc
+
+removed achievement-based localizations which were causing problems
+------------------------------------------------------------------------
+

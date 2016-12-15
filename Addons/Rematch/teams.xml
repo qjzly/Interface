@@ -1,0 +1,757 @@
+<Ui>
+
+	<!-- the notes/preferences/target buttons that appear on team lists and the floating footnote -->
+	<Button name="RematchTeamFootnoteTemplate" virtual="true">
+		<Size x="28" y="28"/>
+		<NormalTexture file="Interface\Store\category-icon-scroll">
+			<TexCoords left="0.15" right="0.85" top="0.15" bottom="0.85"/>
+		</NormalTexture>
+		<PushedTexture file="Interface\Store\category-icon-scroll">
+			<TexCoords left="0.1" right="0.9" top="0.1" bottom="0.9"/>
+		</PushedTexture>
+		<HighlightTexture file="Interface\Store\minimap-delivery-highlight" blend="ADD" alpha="0.5">
+			<Size x="26" y="26"/>
+			<Anchors>
+				<Anchor point="CENTER"/>
+			</Anchors>
+		</HighlightTexture>
+		<Scripts>
+			<OnLoad>
+				if self.defaultIcon then
+					self:SetNormalTexture(self.defaultIcon)
+					self:SetPushedTexture(self.defaultIcon)
+				end
+			</OnLoad>
+			<OnEnter>
+				Rematch.TeamFootnoteOnEnter(self)
+			</OnEnter>
+			<OnLeave>
+				Rematch.TeamFootnoteOnLeave(self)
+			</OnLeave>
+			<OnClick>
+				Rematch.TeamFootnoteOnClick(self)
+			</OnClick>
+		</Scripts>
+	</Button>
+
+	<Button name="RematchTeamListButtonTemplate" virtual="true">
+		<Size x="219" y="28"/>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture file="Interface\PetBattles\PetJournal" setAllPoints="true">
+					<TexCoords left="0.49804688" right="0.90625000" top="0.12792969" bottom="0.17285156"/>
+				</Texture>
+			</Layer>
+			<Layer level="BORDER">
+				<Texture parentKey="back" file="Interface\ChatFrame\ChatFrameBackground">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="76" y="-3"/>
+						<Anchor point="BOTTOMRIGHT" x="-3" y="3"/>
+					</Anchors>
+					<Gradient orientation="VERTICAL">
+						<MinColor r="0.35" g="0.35" b="0.35" a="1"/>
+						<MaxColor r="0.35" g="0.35" b="0.35" a="0"/>
+					</Gradient>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<Texture file="Interface\Common\ShadowOverlay-Corner">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="74" y="-3"/>
+						<Anchor point="BOTTOMRIGHT" x="-3" y="3"/>
+					</Anchors>
+					<TexCoords left="0" right="1" top="1" bottom="0"/>
+				</Texture>
+				<Texture parentArray="pets" file="Interface\Icons\INV_Misc_QuestionMark">
+					<Size x="22" y="22"/>
+					<Anchors>
+						<Anchor point="LEFT" x="2" y="0"/>
+					</Anchors>
+					<TexCoords left="0.075" right="0.925" top="0.075" bottom="0.925"/>
+				</Texture>
+				<Texture parentArray="pets" file="Interface\Icons\INV_Misc_QuestionMark">
+					<Size x="22" y="22"/>
+					<Anchors>
+						<Anchor point="LEFT" x="26" y="0"/>
+					</Anchors>
+					<TexCoords left="0.075" right="0.925" top="0.075" bottom="0.925"/>
+				</Texture>
+				<Texture parentArray="pets" file="Interface\Icons\INV_Misc_QuestionMark">
+					<Size x="22" y="22"/>
+					<Anchors>
+						<Anchor point="LEFT" x="50" y="0"/>
+					</Anchors>
+					<TexCoords left="0.075" right="0.925" top="0.075" bottom="0.925"/>
+				</Texture>
+				<FontString parentKey="name" inherits="RematchListFont" justifyH="LEFT" justifyV="CENTER">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="78" y="-2"/>
+						<Anchor point="BOTTOMRIGHT" x="-10" y="1"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<!-- notes button on right side of team list entry -->
+			<Button parentKey="notes" inherits="RematchTeamFootnoteTemplate">
+				<KeyValues>
+					<KeyValue key="defaultIcon" value="Interface\Store\category-icon-scroll"/>
+					<KeyValue key="footnote" value="notes"/>
+				</KeyValues>
+			</Button>
+			<!-- preferences button on right side, when a team has leveling pet preferences -->
+			<Button parentKey="preferences" inherits="RematchTeamFootnoteTemplate">
+				<KeyValues>
+					<KeyValue key="defaultIcon" value="Interface\AddOns\Rematch\textures\preference"/>
+					<KeyValue key="footnote" value="preferences"/>
+				</KeyValues>
+			</Button>
+			<Button parentKey="targeted" inherits="RematchTeamFootnoteTemplate">
+				<KeyValues>
+					<KeyValue key="defaultIcon" value="Interface\AddOns\Rematch\textures\targeted"/>
+					<KeyValue key="footnote" value="targeted"/>
+				</KeyValues>
+			</Button>
+		</Frames>
+		<HighlightTexture file="Interface\PetBattles\PetJournal" setAllPoints="true" alphaMode="BLEND">
+			<Anchors>
+				<Anchor point="TOPLEFT" x="74" y="-1"/>
+				<Anchor point="BOTTOMRIGHT" x="-1" y="0"/>
+			</Anchors>
+			<TexCoords left="0.59804688" right="0.80625000" top="0.17480469" bottom="0.21972656"/>
+		</HighlightTexture>
+		<Scripts>
+			<OnLoad>
+				self:RegisterForClicks("AnyUp")
+				self.notes:RegisterForClicks("AnyUp")
+				self.preferences:RegisterForClicks("AnyUp")
+				self.targeted:RegisterForClicks("AnyUp")
+				self:RegisterForDrag("LeftButton")
+			</OnLoad>
+			<OnEnter>
+				Rematch.TeamListOnEnter(self)
+			</OnEnter>
+			<OnLeave>
+				Rematch.TeamListOnLeave(self)
+			</OnLeave>
+			<OnClick>
+				Rematch.TeamListOnClick(self,button)
+			</OnClick>
+			<OnDoubleClick>
+				Rematch.TeamListOnDoubleClick(self)
+			</OnDoubleClick>
+			<OnDragStart>
+				Rematch.TeamListOnDragStart(self)
+			</OnDragStart>
+			<OnDragStop>
+				Rematch.TeamListOnDragStop(self)
+			</OnDragStop>
+		</Scripts>
+	</Button>
+
+	<Button name="RematchTabIconPickerIconTemplate" virtual="true">
+		<Size x="32" y="32"/>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture parentKey="icon" setAllPoints="true"/>
+			</Layer>
+			<Layer level="ARTWORK">
+				<Texture parentKey="selected" file="Interface\Buttons\CheckButtonHilight" alphaMode="ADD" setAllPoints="true" hidden="true"/>
+			</Layer>
+		</Layers>
+		<HighlightTexture file="Interface\Buttons\ButtonHilight-Square" alphaMode="ADD" setAllPoints="true"/>
+		<Scripts>
+			<OnClick>
+				Rematch.TeamTabIconPickerOnClick(self)
+			</OnClick>
+			<OnEnter>
+				Rematch.TeamTabEditIconOnEnter(self)
+			</OnEnter>
+			<OnLeave>
+				RematchTooltip:Hide()
+			</OnLeave>
+		</Scripts>
+	</Button>
+
+	<!-- the row of 6 icons in the tab dialog -->
+	<Button name="RematchTabIconPickerTemplate" virtual="true">
+		<Size x="196" y="32"/>
+		<Frames>
+			<Button parentArray="icons" inherits="RematchTabIconPickerIconTemplate">
+				<Anchors>
+					<Anchor point="LEFT" x="2" y="0"/>
+				</Anchors>
+			</Button>
+			<Button parentArray="icons" inherits="RematchTabIconPickerIconTemplate">
+				<Anchors>
+					<Anchor point="LEFT" x="34" y="0"/>
+				</Anchors>
+			</Button>
+			<Button parentArray="icons" inherits="RematchTabIconPickerIconTemplate">
+				<Anchors>
+					<Anchor point="LEFT" x="66" y="0"/>
+				</Anchors>
+			</Button>
+			<Button parentArray="icons" inherits="RematchTabIconPickerIconTemplate">
+				<Anchors>
+					<Anchor point="LEFT" x="98" y="0"/>
+				</Anchors>
+			</Button>
+			<Button parentArray="icons" inherits="RematchTabIconPickerIconTemplate">
+				<Anchors>
+					<Anchor point="LEFT" x="130" y="0"/>
+				</Anchors>
+			</Button>
+			<Button parentArray="icons" inherits="RematchTabIconPickerIconTemplate">
+				<Anchors>
+					<Anchor point="LEFT" x="162" y="0"/>
+				</Anchors>
+			</Button>
+		</Frames>
+	</Button>
+
+	<!-- the tabs along the right of the team list -->
+	<CheckButton name="RematchTeamTabButtonTemplate" virtual="true">
+		<Size x="30" y="30"/>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture file="Interface\SpellBook\SpellBook-SkillLineTab">
+					<Size x="60" y="60"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" x="-3" y="11"/>
+					</Anchors>
+					<Color r="0.75" g="0.75" b="0.75"/>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<Texture parentKey="icon" file="Interface\Icons\PetJournalPortrait" setAllPoints="true">
+					<Size x="30" y="30"/>
+					<Anchors>
+						<Anchor point="CENTER"/>
+					</Anchors>
+					<TexCoords left="0.075" right="0.925" top="0.075" bottom="0.925"/>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<Texture parentKey="custom" file="Interface\Buttons\UI-GuildButton-PublicNote-Up">
+					<Size x="16" y="16"/>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" x="-1" y="0"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<!-- glow is the pulsing border to indicate a tab can receive the team on the cursor -->
+			<Frame parentKey="glow" setAllPoints="true" hidden="true">
+				<Animations>
+					<AnimationGroup parentKey="animation" looping="REPEAT">
+						<Alpha change="-1.0" duration="0.9" order="1"/>
+						<Alpha change="1.0" duration="0.9" order="2"/>
+					</AnimationGroup>
+				</Animations>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture file="Interface/BUTTONS/CheckButtonHilight" alphaMode="ADD">
+							<Anchors>
+								<Anchor point="TOPLEFT" x="-4" y="4"/>
+								<Anchor point="BOTTOMRIGHT" x="4" y="-4"/>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnShow>
+						self.animation:Stop() -- reset cycle to start
+						self.animation:Play()
+						self:SetFrameLevel(self:GetParent():GetFrameLevel()+4)
+					</OnShow>
+				</Scripts>
+			</Frame>
+		</Frames>
+		<NormalTexture/>
+		<HighlightTexture file="Interface\Buttons\ButtonHilight-Square" alphaMode="ADD">
+			<Anchors>
+				<Anchor point="TOPLEFT" x="-2" y="2"/>
+				<Anchor point="BOTTOMRIGHT" x="2" y="-2"/>
+			</Anchors>
+		</HighlightTexture>
+		<CheckedTexture file="Interface\Buttons\CheckButtonHilight" alphaMode="ADD">
+			<Anchors>
+				<Anchor point="TOPLEFT" x="-2" y="2"/>
+				<Anchor point="BOTTOMRIGHT" x="2" y="-2"/>
+			</Anchors>
+		</CheckedTexture>
+		<Scripts>
+			<OnMouseDown>
+				Rematch.TeamTabButtonOnMouseDown(self,button)
+			</OnMouseDown>
+			<OnMouseUp>
+				self.icon:SetSize(30,30)
+			</OnMouseUp>
+			<OnClick>
+				Rematch.TeamTabButtonOnClick(self,button)
+			</OnClick>
+			<OnEnter>
+				Rematch.TeamTabButtonOnEnter(self)
+			</OnEnter>
+			<OnLeave>
+				RematchTooltip:Hide()
+			</OnLeave>
+		</Scripts>
+	</CheckButton>
+
+	<Frame name="RematchTeams" parentKey="teams" parent="RematchDrawer" useParentLevel="true" inherits="RematchDragTemplate">
+		<Anchors>
+			<Anchor point="TOPLEFT" x="5" y="-28"/> <!-- y="-6" -->
+			<Anchor point="BOTTOMRIGHT" x="-39" y="6"/>
+		</Anchors>
+		<Frames>
+
+			<Button parentKey="import" inherits="RematchToolbarButtonTemplate">
+				<!-- this is anchored in options.lua rematch.optionsFunc.AutoAlways() -->
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT" x="-5" y="-3"/>
+				</Anchors>
+				<KeyValues>
+					<KeyValue key="defaultIcon" value="Interface\Icons\INV_Inscription_RunescrollOfFortitude_Blue"/>
+					<KeyValue key="tooltipTitle" value="Import"/>
+					<KeyValue key="stretchy" value="true"/>
+				</KeyValues>
+				<Scripts>
+					<OnClick>
+						Rematch:ShowImportDialog()
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<EditBox parentKey="searchBox" name="$parentSearchBox" inherits="RematchSearchBoxTemplate">
+				<Size x="0" y="20"/>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeKey="$parent.import" relativePoint="BOTTOMRIGHT" x="2" y="7"/> <!-- bottomleft re-anchored in options.lua -->
+					<Anchor point="BOTTOMRIGHT" relativePoint="TOPRIGHT" x="0" y="4"/>
+				</Anchors>
+				<Scripts>
+					<OnTextChanged>
+						Rematch.TeamSearchBoxOnTextChanged(self)
+					</OnTextChanged>
+				</Scripts>
+			</EditBox>
+
+			<!-- the actual list of teams -->
+			<Frame parentKey="list" inherits="RematchListTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+					<Anchor point="BOTTOMRIGHT"/>
+				</Anchors>
+				<Scripts>
+					<OnShow>
+						Rematch.timeTeamListShown = GetTime()
+						Rematch:ListResizeButtons(self.scrollFrame)
+					</OnShow>
+				</Scripts>
+			</Frame>
+
+			<!-- this is not used for scrolling; it's to use a scrollChild so tabs clip at the bottom -->
+			<ScrollFrame parentKey="tabScrollFrame">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="0" y="-10"/>
+					<Anchor point="BOTTOMRIGHT" x="36" y="12"/>
+				</Anchors>
+				<ScrollChild>
+					<Frame parentKey="scrollChild">
+						<Size x="36" y="100"/>
+						<Frames>
+							<CheckButton parentArray="tabs" inherits="RematchTeamTabButtonTemplate" id="1">
+								<Anchors>
+									<Anchor point="TOPLEFT" x="2" y="-10"/>
+								</Anchors>
+							</CheckButton>
+							<CheckButton parentArray="tabs" inherits="RematchTeamTabButtonTemplate" id="2">
+								<Anchors>
+									<Anchor point="TOPLEFT" x="2" y="-54"/>
+								</Anchors>
+							</CheckButton>
+							<CheckButton parentArray="tabs" inherits="RematchTeamTabButtonTemplate" id="3">
+								<Anchors>
+									<Anchor point="TOPLEFT" x="2" y="-98"/>
+								</Anchors>
+							</CheckButton>
+							<CheckButton parentArray="tabs" inherits="RematchTeamTabButtonTemplate" id="4">
+								<Anchors>
+									<Anchor point="TOPLEFT" x="2" y="-142"/>
+								</Anchors>
+							</CheckButton>
+							<CheckButton parentArray="tabs" inherits="RematchTeamTabButtonTemplate" id="5">
+								<Anchors>
+									<Anchor point="TOPLEFT" x="2" y="-186"/>
+								</Anchors>
+							</CheckButton>
+							<CheckButton parentArray="tabs" inherits="RematchTeamTabButtonTemplate" id="6">
+								<Anchors>
+									<Anchor point="TOPLEFT" x="2" y="-230"/>
+								</Anchors>
+							</CheckButton>
+							<CheckButton parentArray="tabs" inherits="RematchTeamTabButtonTemplate" id="7">
+								<Anchors>
+									<Anchor point="TOPLEFT" x="2" y="-274"/>
+								</Anchors>
+							</CheckButton>
+							<CheckButton parentArray="tabs" inherits="RematchTeamTabButtonTemplate" id="8">
+								<Anchors>
+									<Anchor point="TOPLEFT" x="2" y="-318"/>
+								</Anchors>
+							</CheckButton>
+							<CheckButton parentArray="tabs" inherits="RematchTeamTabButtonTemplate" id="9">
+								<Anchors>
+									<Anchor point="TOPLEFT" x="2" y="-362"/>
+								</Anchors>
+							</CheckButton>
+							<CheckButton parentArray="tabs" inherits="RematchTeamTabButtonTemplate" id="10">
+								<Anchors>
+									<Anchor point="TOPLEFT" x="2" y="-406"/>
+								</Anchors>
+							</CheckButton>
+							<CheckButton parentArray="tabs" inherits="RematchTeamTabButtonTemplate" id="11">
+								<Anchors>
+									<Anchor point="TOPLEFT" x="2" y="-450"/>
+								</Anchors>
+							</CheckButton>
+							<CheckButton parentArray="tabs" inherits="RematchTeamTabButtonTemplate" id="12">
+								<Anchors>
+									<Anchor point="TOPLEFT" x="2" y="-494"/>
+								</Anchors>
+							</CheckButton>
+						</Frames>
+					</Frame>
+				</ScrollChild>
+				<Scripts>
+					<OnMouseWheel>
+							Rematch:TeamTabScroll(delta)
+					</OnMouseWheel>
+				</Scripts>
+			</ScrollFrame>
+
+			<Button parentKey="tabScrollUp">
+				<Size x="32" y="16"/>
+				<Anchors>
+					<Anchor point="BOTTOM" relativeKey="$parent.tabScrollFrame" relativePoint="TOP" x="0" y="-1"/>
+				</Anchors>
+				<NormalTexture file="Interface\PaperDollInfoFrame\UI-GearManager-FlyoutButton">
+					<TexCoords left="0.2" right="0.8" top="0.025" bottom="0.475"/>
+				</NormalTexture>
+				<PushedTexture file="Interface\PaperDollInfoFrame\UI-GearManager-FlyoutButton">
+					<TexCoords left="0.175" right="0.825" top="0" bottom="0.5"/>
+				</PushedTexture>
+				<HighlightTexture file="Interface\PaperDollInfoFrame\UI-GearManager-FlyoutButton" alphaMode="ADD">
+					<TexCoords left="0.2" right="0.8" top="0.5" bottom="1"/>
+				</HighlightTexture>
+				<Scripts>
+					<OnClick>
+						Rematch:TeamTabScroll(1)
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button parentKey="tabScrollDown">
+				<Size x="32" y="16"/>
+				<Anchors>
+					<Anchor point="TOP" relativeKey="$parent.tabScrollFrame" relativePoint="BOTTOM" x="0" y="0"/>
+				</Anchors>
+				<NormalTexture file="Interface\PaperDollInfoFrame\UI-GearManager-FlyoutButton">
+					<TexCoords left="0.2" right="0.8" top="0.475" bottom="0.025"/>
+				</NormalTexture>
+				<PushedTexture file="Interface\PaperDollInfoFrame\UI-GearManager-FlyoutButton">
+					<TexCoords left="0.175" right="0.825" top="0.5" bottom="0"/>
+				</PushedTexture>
+				<HighlightTexture file="Interface\PaperDollInfoFrame\UI-GearManager-FlyoutButton" alphaMode="ADD">
+					<TexCoords left="0.2" right="0.8" top="1" bottom="0.5"/>
+				</HighlightTexture>
+				<Scripts>
+					<OnClick>
+						Rematch:TeamTabScroll(-1)
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<!-- This invisible frame is shown when a team is "picked up": it covers the most
+					 of the UI with the scrollbar and tabs exposed.  This primary frame has an
+					 OnUpdate to position the picked up team on the cursor and to position an
+					 insertLine if the mouse is over the team list to show where it will insert.
+					 The actual drop happens when the frame is clicked. -->
+			<Button name="RematchTeamDragFrame" parentKey="dragFrame" frameStrata="TOOLTIP" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="UIParent"/>
+					<Anchor point="BOTTOMLEFT" relativeTo="UIParent"/>
+					<Anchor point="RIGHT" x="-22" y="0"/>
+				</Anchors>
+				<Frames>
+					<!-- the "picked up" team, filled by the pickup and anchored in the OnUpdate -->
+					<Button parentKey="team" inherits="RematchTeamListButtonTemplate"/>
+
+					<!-- this is the line that appears between teams when dragging a team within a custom-sorted tab -->
+					<!-- note the explicit parent: this is actually rematch.drawer.queue.list.scrollFrame.insertLine -->
+					<Frame parentKey="insertLine" hidden="true">
+						<Size x="0" y="6"/>
+						<Animations>
+							<AnimationGroup parentKey="animation" looping="REPEAT">
+								<Alpha change="-1.0" duration="0.5" order="1"/>
+								<Alpha change="1.0" duration="0.5" order="2"/>
+							</AnimationGroup>
+						</Animations>
+						<Layers>
+							<Layer level="OVERLAY">
+								<Texture file="Interface\Archeology\Arch-FlareEffect" setAllPoints="true">
+									<TexCoords left="0.04296875" right="0.892578125" top="0.703125" bottom="0.794921875"/>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnShow>
+								self.animation:Play()
+							</OnShow>
+						</Scripts>
+					</Frame>
+
+					<!-- the following three panels cover the rest of the UI beyond the scrollbar/tabs -->
+					<Button parentArray="panels"> <!-- covers UI to right of tabs -->
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="UIParent"/>
+							<Anchor point="BOTTOMRIGHT" relativeTo="UIParent"/>
+							<Anchor point="LEFT" relativePoint="RIGHT" x="58" y="0"/>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								Rematch.TeamListOnDragStop(self:GetParent(),button)
+							</OnClick>
+						</Scripts>
+					</Button>
+					<Button parentArray="panels"> <!-- covers UI from top of UI to top of RematchTeams -->
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="UIParent"/>
+							<Anchor point="TOPRIGHT" relativeTo="UIParent"/>
+							<Anchor point="BOTTOM" relativeTo="RematchTeams" relativePoint="TOP"/>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								Rematch.TeamListOnDragStop(self:GetParent(),button)
+							</OnClick>
+						</Scripts>
+					</Button>
+					<Button parentArray="panels"> <!-- covers UI from bottom of UI to bottom of RematchTeams -->
+						<Anchors>
+							<Anchor point="BOTTOMLEFT" relativeTo="UIParent"/>
+							<Anchor point="BOTTOMRIGHT" relativeTo="UIParent"/>
+							<Anchor point="TOP" relativeTo="RematchTeams" relativePoint="BOTTOM"/>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								Rematch.TeamListOnDragStop(self:GetParent(),button)
+							</OnClick>
+						</Scripts>
+					</Button>
+				</Frames>
+				<Scripts>
+					<OnHide>
+						Rematch.TeamDragFrameOnHide(self)
+					</OnHide>
+					<OnClick>
+						Rematch.TeamListOnDragStop(self,button) -- clicking anywhere is same as stopping drag that showed this
+					</OnClick>
+					<OnUpdate>
+						Rematch.TeamDragFrameOnUpdate(self,elapsed)
+					</OnUpdate>
+				</Scripts>
+			</Button>
+
+		</Frames>
+	</Frame>
+
+	<Button name="RematchTeamCardPetTemplate" inherits="RematchPetSlotTemplate" virtual="true">
+		<Size x="44" y="44"/>
+		<Frames>
+			<Button parentArray="abilities" inherits="RematchAbilitySlotTemplate" id="1">
+				<Size x="30" y="30"/>
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="RIGHT" x="2" y="0"/>
+				</Anchors>
+			</Button>
+			<Button parentArray="abilities" inherits="RematchAbilitySlotTemplate" id="2">
+				<Size x="30" y="30"/>
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="RIGHT" x="34" y="0"/>
+				</Anchors>
+			</Button>
+			<Button parentArray="abilities" inherits="RematchAbilitySlotTemplate" id="3">
+				<Size x="30" y="30"/>
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="RIGHT" x="68" y="0"/>
+				</Anchors>
+			</Button>
+		</Frames>
+	</Button>
+
+	<Frame name="RematchTeamCard" frameStrata="HIGH" parent="Rematch" clampedToScreen="true" enableMouse="true" hidden="true" inherits="RematchDragTemplate">
+		<Size x="180" y="212"/>
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="UIParent"/>
+		</Anchors>
+		<Backdrop edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="16"/>
+			</EdgeSize>
+			<BorderColor r="1" g=".82" b="0"/>
+		</Backdrop>
+
+		<Layers>
+			<Layer level="BACKGROUND">
+				<!-- the brown background to title area -->
+				<Texture file="Interface\PetBattles\PetJournal">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="3" y="-3"/>
+						<Anchor point="BOTTOMRIGHT" relativePoint="TOPRIGHT" x="-3" y="-40"/>
+					</Anchors>
+					<TexCoords left="0.189453125" right="0.658203125" top="0.486328125" bottom="0.5658203125"/>
+				</Texture>
+				<!-- wood background to main area -->
+				<Texture file="Interface\Store\Store-Main">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="3" y="-40"/>
+						<Anchor point="BOTTOMRIGHT" x="-3" y="3"/>
+					</Anchors>
+					<TexCoords left="0" right="0.1826171875" top="0.6455078125" bottom="0.462890625"/>
+				</Texture>
+			</Layer>
+			<Layer level="BORDER">
+				<!-- line below title area -->
+				<Texture file="Interface\PetBattles\_PetJournalHorizTile" tile="horiz">
+					<Size x="0" y="6"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" x="3" y="-37"/>
+						<Anchor point="TOPRIGHT" x="-3" y="-37"/>
+					</Anchors>
+					<TexCoords left="0" right="1" top="0.0078125" bottom="0.078125"/>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<!-- tab icon in topleft (will be SetPortraitToTexture'ed) -->
+				<Texture parentKey="icon">
+					<Size x="32" y="32"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" x="6" y="-5"/>
+					</Anchors>
+				</Texture>
+				<!-- name of team in title area -->
+				<FontString parentKey="name" inherits="SystemFont_Shadow_Med1_Outline" justifyH="CENTER" justifyV="CENTER">
+					<Color r="1" g=".82" b=".5"/>
+					<Size x="132" y="34"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" x="40" y="-4"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="OVERLAY">
+				<!-- circle overlay over tab icon -->
+				<Texture file="Interface\PetBattles\PetBattleHUD">
+					<Size x="32" y="32"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" x="6" y="-5"/>
+					</Anchors>
+					<TexCoords left="0.884765625" right="0.943359375" top="0.681640625" bottom="0.798828125"/>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button parentArray="pets" inherits="RematchTeamCardPetTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" x="20" y="-52"/>
+				</Anchors>
+			</Button>
+			<Button parentArray="pets" inherits="RematchTeamCardPetTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" x="20" y="-102"/>
+				</Anchors>
+			</Button>
+			<Button parentArray="pets" inherits="RematchTeamCardPetTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" x="20" y="-152"/>
+				</Anchors>
+			</Button>
+
+			<!-- this is the wooden frame that borders the card to indicate it's locked -->
+			<Frame parentKey="lockFrame" hidden="true" inherits="RematchDragTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" x="-15" y="15"/>
+					<Anchor point="BOTTOMRIGHT" x="15" y="-15"/>
+				</Anchors>
+				<Backdrop edgeFile="Interface\AchievementFrame\UI-Achievement-WoodBorder" tile="true">
+					<EdgeSize>
+						<AbsValue val="52"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="26"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="0" right="0" top="0" bottom="0"/>
+					</BackgroundInsets>
+					<BorderColor r="1" g=".82" b="0"/>
+				</Backdrop>
+				<Frames>
+					<!-- these cancel buttons conveniently look like screws, to unlock the card -->
+					<Button inherits="RematchCardUnlockTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" x="4" y="-4"/>
+						</Anchors>
+					</Button>
+					<Button inherits="RematchCardUnlockTemplate">
+						<Anchors>
+							<Anchor point="TOPRIGHT" x="-4" y="-4"/>
+						</Anchors>
+					</Button>
+					<Button inherits="RematchCardUnlockTemplate">
+						<Anchors>
+							<Anchor point="BOTTOMLEFT" x="4" y="4"/>
+						</Anchors>
+					</Button>
+					<Button inherits="RematchCardUnlockTemplate">
+						<Anchors>
+							<Anchor point="BOTTOMRIGHT" x="-4" y="4"/>
+						</Anchors>
+					</Button>
+				</Frames>
+			</Frame>
+
+		</Frames>
+		<Scripts>
+			<OnHide>
+				Rematch.TeamCardOnHide(self)
+			</OnHide>
+		</Scripts>
+	</Frame>
+
+	<!-- single frame to contain footnotes for team list buttons -->
+	<Frame name="RematchFloatingTeamFootnote">
+		<Size x="64" y="28"/>
+		<Frames>
+			<Button parentKey="notes" inherits="RematchTeamFootnoteTemplate" alpha="0.5">
+				<KeyValues>
+					<KeyValue key="defaultIcon" value="Interface\Store\category-icon-scroll"/>
+					<KeyValue key="footnote" value="notes"/>
+				</KeyValues>
+			</Button>
+			<Button parentKey="preferences" inherits="RematchTeamFootnoteTemplate" alpha="0.5">
+				<KeyValues>
+					<KeyValue key="defaultIcon" value="Interface\AddOns\Rematch\textures\preference"/>
+					<KeyValue key="footnote" value="preferences"/>
+				</KeyValues>
+			</Button>
+			<Button parentKey="targeted" inherits="RematchTeamFootnoteTemplate" alpha="0.5">
+				<KeyValues>
+					<KeyValue key="defaultIcon" value="Interface\AddOns\Rematch\textures\targeted"/>
+					<KeyValue key="footnote" value="targeted"/>
+				</KeyValues>
+			</Button>
+		</Frames>
+	</Frame>
+
+</Ui>

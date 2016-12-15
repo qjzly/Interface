@@ -1,0 +1,194 @@
+<Ui>
+
+	<!-- template for the leveling panel editboxes (really) for entering numbers to fields
+			 when adding new fields, remember to set an id="index_in_team_table" -->
+	<EditBox name="RematchPreferencesPanelEditBoxTemplate" inherits="RematchInputBoxTemplate" virtual="true">
+		<Size x="60" y="20"/>
+		<Frames>
+			<Button parentKey="clear" inherits="RematchClearButtonTemplate">
+				<Anchors>
+					<Anchor point="RIGHT" x="6" y="1"/>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						local parent = self:GetParent()
+						parent:SetText("")
+						parent:SetFocus(true)
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnEnter>
+				Rematch.ShowTooltip(self)
+			</OnEnter>
+			<OnLeave>
+				RematchTooltip:Hide()
+			</OnLeave>
+			<OnEnterPressed>
+				if Rematch.dialog.editBox:IsVisible() then
+					Rematch.dialog.editBox:SetFocus(true)
+				else
+					Rematch.dialog.accept:Click()
+				end
+			</OnEnterPressed>
+			<OnChar>
+				Rematch.PreferencesOnChar(self)
+			</OnChar>
+			<OnTextChanged>
+				Rematch.PreferencesOnTextChanged(self)
+			</OnTextChanged>
+			<OnEscapePressed>
+				if not Rematch.dialog.editBox:IsVisible() then
+					Rematch.dialog.cancel:Click()
+				else
+					Rematch.dialog.editBox:SetFocus(true)
+				end
+			</OnEscapePressed>
+			<OnShow>
+				C_Timer.After(0,function() self:SetCursorPosition(0) end) -- TODO: why is this needed?!
+			</OnShow>
+		</Scripts>
+	</EditBox>
+
+	<!-- toggle button to show/hide leveling preferences panel -->
+	<Button parentKey="preferencesToggle" parent="RematchDialog" inherits="RematchToolbarButtonTemplate">
+		<KeyValues>
+			<KeyValue key="defaultIcon" value="Interface\AddOns\Rematch\textures\leveling"/>
+			<KeyValue key="nopreclick" value="true"/>
+		</KeyValues>
+		<Scripts>
+			<OnClick>
+				Rematch.PreferencesToggleOnClick(self)
+			</OnClick>
+		</Scripts>
+	</Button>
+
+	<!-- preferencesPanel displays the min health/max level/etc for leveling pet save dialog -->
+	<Frame parentKey="preferencesPanel" useParentLevel="true" parent="RematchDialog" hidden="true">
+		<Size x="250" y="164"/>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<!-- horizontal line at top -->
+				<Texture file="Interface\PetBattles\_PetJournalHorizTile" tile="horiz">
+					<Size x="243" y="6"/>
+					<TexCoords left="0" right="1" top="0.0078125" bottom="0.078125"/>
+					<Anchors>
+						<Anchor point="TOP"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString parentKey="title" inherits="GameFontNormal" justifyH="CENTER">
+					<Size x="220" y="0"/>
+					<Anchors>
+						<Anchor point="TOP" x="0" y="-10"/>
+					</Anchors>
+				</FontString>
+				<FontString parentKey="allowMMLabel" inherits="GameFontHighlight" justifyH="RIGHT">
+					<Anchors>
+						<Anchor point="CENTER" relativePoint="TOP" x="20" y="-71"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<!-- 7th entry in team table is minHP -->
+			<EditBox parentKey="minHP" inherits="RematchPreferencesPanelEditBoxTemplate">
+				<Anchors>
+					<Anchor point="TOPRIGHT" x="-42" y="-34"/>
+				</Anchors>
+				<KeyValues>
+					<KeyValue key="var" value="minHP"/>
+				</KeyValues>
+				<Scripts>
+					<OnTabPressed>
+						self:GetParent().maxXP:SetFocus(true)
+					</OnTabPressed>
+				</Scripts>
+			</EditBox>
+			<!-- 8th entry in team table is allowMM -->
+			<CheckButton parentKey="allowMM" inherits="UICheckButtonTemplate">
+				<Size x="26" y="26"/>
+				<Anchors>
+					<Anchor point="RIGHT" relativeKey="$parent.allowMMLabel" relativePoint="LEFT" x="-2" y="0"/>
+				</Anchors>
+				<KeyValues>
+					<KeyValue key="var" value="allowMM"/>
+				</KeyValues>
+				<Scripts>
+					<OnClick>
+						Rematch.PreferencesCheckButtonOnClick(self)
+					</OnClick>
+					<OnEnter>
+						Rematch.ShowTooltip(self)
+					</OnEnter>
+					<OnLeave>
+						RematchTooltip:Hide()
+					</OnLeave>
+				</Scripts>
+			</CheckButton>
+			<!-- 10th entry is the expected damage taken -->
+			<Frame parentKey="expected">
+				<Size x="190" y="34"/>
+				<Anchors>
+					<Anchor point="TOP" x="0" y="-86"/>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString parentKey="label" inherits="GameFontHighlight">
+							<Anchors>
+								<Anchor point="TOP"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<CheckButton parentArray="buttons" inherits="RematchBrowserTypeButtonTemplate" id="1"/>
+					<CheckButton parentArray="buttons" inherits="RematchBrowserTypeButtonTemplate" id="2"/>
+					<CheckButton parentArray="buttons" inherits="RematchBrowserTypeButtonTemplate" id="3"/>
+					<CheckButton parentArray="buttons" inherits="RematchBrowserTypeButtonTemplate" id="4"/>
+					<CheckButton parentArray="buttons" inherits="RematchBrowserTypeButtonTemplate" id="5"/>
+					<CheckButton parentArray="buttons" inherits="RematchBrowserTypeButtonTemplate" id="6"/>
+					<CheckButton parentArray="buttons" inherits="RematchBrowserTypeButtonTemplate" id="7"/>
+					<CheckButton parentArray="buttons" inherits="RematchBrowserTypeButtonTemplate" id="8"/>
+					<CheckButton parentArray="buttons" inherits="RematchBrowserTypeButtonTemplate" id="9"/>
+					<CheckButton parentArray="buttons" inherits="RematchBrowserTypeButtonTemplate" id="10"/>
+				</Frames>
+			</Frame>
+			<!-- 9th entry in team table is maxXP -->
+			<EditBox parentKey="maxXP" inherits="RematchPreferencesPanelEditBoxTemplate">
+				<Anchors>
+					<Anchor point="TOPRIGHT" x="-42" y="-130"/>
+				</Anchors>
+				<KeyValues>
+					<KeyValue key="var" value="maxXP"/>
+				</KeyValues>
+				<Scripts>
+					<OnTabPressed>
+						if Rematch.dialog.editBox:IsVisible() then
+							Rematch.dialog.editBox:SetFocus(true)
+						else
+							self:GetParent().minHP:SetFocus(true)
+						end
+					</OnTabPressed>
+				</Scripts>
+			</EditBox>
+		</Frames>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString parentKey="minHPLabel" inherits="GameFontHighlight" justifyH="RIGHT">
+					<Anchors>
+						<Anchor point="RIGHT" relativeKey="$parent.minHP" relativePoint="LEFT" x="-10" y="1"/>
+					</Anchors>
+				</FontString>
+				<FontString parentKey="maxXPLabel" inherits="GameFontHighlight" justifyH="RIGHT">
+					<Anchors>
+						<Anchor point="RIGHT" relativeKey="$parent.maxXP" relativePoint="LEFT" x="-10" y="1"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+
+</Ui>
