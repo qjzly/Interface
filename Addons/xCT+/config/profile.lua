@@ -481,6 +481,8 @@ addon.defaults = {
         -- special tweaks
         ["showSwing"] = true,
         ["prefixSwing"] = true,
+        ["petCrits"] = false,
+
       },
 
       damage = {

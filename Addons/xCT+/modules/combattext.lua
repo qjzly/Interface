@@ -185,6 +185,7 @@ local function ShowImmunes() return x.db.profile.frames["outgoing"].enableImmune
 local function ShowMisses() return x.db.profile.frames["outgoing"].enableMisses end -- outgoing misses
 local function ShowSwingCrit() return x.db.profile.frames["critical"].showSwing end
 local function ShowSwingCritPrefix() return x.db.profile.frames["critical"].prefixSwing end
+local function ShowPetCrits() return x.db.profile.frames["critical"].petCrits end
 local function ShowLootItems() return x.db.profile.frames["loot"].showItems end
 local function ShowLootItemTypes() return x.db.profile.frames["loot"].showItemTypes end
 local function ShowLootMoney() return x.db.profile.frames["loot"].showMoney end
@@ -2003,13 +2004,19 @@ local CombatEventHandlers = {
 		local settings, value = x.db.profile.frames['outgoing'], select(17, UnitBuff(args.destName, args.spellName))
 		if not value or value <= 0 then return end
 
+		-- Keep track of spells that go by
+		if TrackSpells() then x.spellCache.spells[args.spellId] = true end
+
+		-- Filter Ougoing Healing Spell or Amount
+		if IsSpellFiltered(args.spellId) or FilterOutgoingHealing(args.amount) then return end
+
 		-- Create the message
 		local message = x:Abbreviate(value, 'outgoing')
 
 		message = x:GetSpellTextureFormatted(args.spellId,
 			                                   message,
-			    x.db.profile.frames['healing'].iconsEnabled and x.db.profile.frames['healing'].iconsSize or -1,
-			    x.db.profile.frames['healing'].fontJustify)
+			    x.db.profile.frames['outgoing'].iconsEnabled and x.db.profile.frames['outgoing'].iconsSize or -1,
+			    x.db.profile.frames['outgoing'].fontJustify)
 
 		-- Add names
 		message = message .. x.formatName(args, settings.names, true)
@@ -2102,7 +2109,9 @@ local CombatEventHandlers = {
 				x:AddSpamMessage(outputFrame, icon, amount, x.db.profile.spells.mergePetColor, 6)
 				return
 			end
-			critical = nil -- stupid spam fix for hunter pets
+			if not ShowPetCrits() then
+				critical = nil -- stupid spam fix for hunter pets
+			end
 			if isSwing then
 				spellID = 0 -- this will get fixed later
 			end
@@ -2110,7 +2119,9 @@ local CombatEventHandlers = {
 
 		if args:IsSourceMyVehicle() then
 			if not ShowVehicleDamage() then return end
-			critical = nil -- stupid spam fix for hunter pets
+			if not ShowPetCrits() then
+				critical = nil -- stupid spam fix for hunter pets
+			end
 			if isSwing then
 				spellID = 0 -- this will get fixed later
 			end
