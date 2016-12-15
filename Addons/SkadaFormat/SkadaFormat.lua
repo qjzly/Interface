@@ -245,9 +245,9 @@ barmod.ApplySettings = function(self, win)
 
 	local skada = win.bargroup
 
-	if win.db.enabletitle then
-		skada.button:SetBackdrop(nil)
-	end
+	-- if win.db.enabletitle then
+		-- skada.button:SetBackdrop(nil)
+	-- end
 	skada:SetTexture([[Interface\AddOns\!Media\Media\Statusbar.tga]])
 	skada:SetSpacing(barSpacing)
 	skada:SetFrameLevel(5)
@@ -256,8 +256,8 @@ barmod.ApplySettings = function(self, win)
 	titlefont:SetFont("Fonts\\FRIZQT__.TTF", 12, "OUTLINE")
 	win.bargroup.button:SetNormalFontObject(titlefont)
 	
-	local color = win.db.title.color
-	win.bargroup.button:SetBackdropColor( .6, .6, .6)
+	-- local color = win.db.title.color
+	-- win.bargroup.button:SetBackdropColor( .6, .6, .6)
 
 	-- skada:SetBackdrop(nil)
 	-- if not skada.shadow then
@@ -274,12 +274,12 @@ barmod.ApplySettings = function(self, win)
 	-- end
 	-- skada.borderFrame:Point("BOTTOMRIGHT", win.bargroup, "BOTTOMRIGHT", 1, -1)
 
-	-- skada.button:SetFrameStrata("MEDIUM")
-	-- skada.button:SetFrameLevel(5)
-	-- skada:SetFrameStrata("MEDIUM")
-		win.bargroup.button:SetFrameStrata("MEDIUM")
-		win.bargroup.button:SetFrameLevel(5)	
-		win.bargroup:SetFrameStrata("MEDIUM")
+	skada.button:SetFrameStrata("MEDIUM")
+	skada.button:SetFrameLevel(5)
+	skada:SetFrameStrata("MEDIUM")
+	win.bargroup.button:SetFrameStrata("MEDIUM")
+	win.bargroup.button:SetFrameLevel(5)	
+	win.bargroup:SetFrameStrata("MEDIUM")
 end
 
 hooksecurefunc(Skada, "UpdateDisplay", function(self)
