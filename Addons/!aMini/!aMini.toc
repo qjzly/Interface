@@ -1,0 +1,55 @@
+## Interface: 70100
+## Title: aMini
+## Title-zhCN: !aMini 迷你小功能插件
+## Notes: Mini 
+
+##Load_AddOnSkins.xml
+
+Set_xCT.lua
+
+ann.lua
+
+##聊天频道增强
+chat.lua
+
+##obar.lua
+
+# 聊天表情
+##ChatEmote.lua
+
+##WTF
+WTF.lua
+
+##TAB 键选择最近的目标
+RegularTab.lua
+
+##分解不必再点确定
+aotuClick.lua
+
+##SetCVar
+SetCVar.lua
+
+##好友列表染色
+friendColor.lua
+
+##已学图纸配方着色
+##AlreadyKnown.lua
+
+##Tooltip.lua
+config.lua
+##地图：迷你地图.lua
+##功能：动作条超出距离变红.lua
+##功能：鼠标提示.lua
+##功能：头像Shift点击设置焦点.lua
+##功能：头像血量条动态变色.lua
+##功能：姓名板百分比.lua
+##功能：邮箱打开全部.lua
+##功能：自动卖灰.lua
+##功能：自动修理.lua
+##美化：Buff和Debuff.lua
+##美化：动作条按钮.lua
+##美化：聊天框.lua
+##美化：染色.lua
+##美化：任务栏.lua
+##美化：施法条.lua
+##美化：头像光环.lua

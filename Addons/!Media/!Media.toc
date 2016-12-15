@@ -1,0 +1,7 @@
+## Interface: 70100
+## Title: !Media
+## Title-zhCN: !Media 自定义材质
+## Notes: !Media
+
+Load_AddOnSkins.xml
+Media.lua
