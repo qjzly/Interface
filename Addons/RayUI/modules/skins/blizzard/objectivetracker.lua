@@ -45,7 +45,7 @@ local function LoadSkin()
             end
         end)
 
-    hooksecurefunc(QUEST_TRACKER_MODULE, "SetBlockHeader", function(_, block)
+    hooksecurefunc(QUEST_TRACKER_MODULE, "SetBlockHeader", function(_, block) --标题
             if not block.headerStyled then
                 block.HeaderText:FontTemplate(R["media"].font, R["media"].fontsize, "OUTLINE")
                 block.headerStyled = true

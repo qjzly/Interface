@@ -1,7 +1,131 @@
-Ovale Spell Priority 7.1.4.1
+Ovale Spell Priority 7.1.4.2
 ============================
 
-Changes from version 7.1.4.0:
+Changes from version 7.1.4.1:
 -----------------------------
 
--   Fix bug with PTR function
+-   Merge pull request #192 from kevindesmet/paladin-fixes
+
+    Paladin
+-   Merge pull request #193 from kevindesmet/dh
+
+    DH
+-   demon spikes only in combat
+
+-   take GCD into account for using sigils
+
+-   Only test when the GCD is actually running
+
+-   fiery brand into rotation
+
+-   remove all soul fragments when soul barrier is used
+
+-   remove blade turning on use of shear
+
+-   soul fragment check for spirit bomb
+
+-   Enable blade turning
+
+-   Merge pull request #188 from kevindesmet/monk
+
+    Monk
+-   Merge pull request #191 from kevindesmet/dh
+
+    Fixes for Demon hunter
+-   Less strict usage of demon spikes
+
+-   felblade cd-haste melee
+
+-   felblade shortcd
+
+-   use shear and demons_bite to detect melee range
+
+-   vengefull retreat on shortcd
+
+-   Default scripts for DH
+
+-   Revert "Issue with blackout_strike not registering even when pressed "on cd""
+
+    This reverts commit 12f277a2bcdea99a5c39b42f939f54f1f2fc2259.
+
+-   Merge branch 'master' of https://github.com/Sidoine/Ovale into monk
+
+-   Merge branch 'master' of https://github.com/Sidoine/Ovale into paladin-fixes
+
+-   merge from Sidoine/master
+
+-   Prevent healing elixir from overhealing
+
+-   less flickering for blackout_combo
+
+-   cd_haste on blackout_strike
+
+-   trying to prevent flickering of spells
+
+-   Issue with blackout_strike not registering even when pressed "on cd"
+
+-   First try at Blackout Combo
+
+-   Added BrewmasterExpelHarmOffensivelyPreConditions()
+
+-   cd_haste on keg smash
+
+-   cd on blackout strike
+
+-   Simplify keeping up ironskin_brew buff
+
+-   Only suggest AM when taken damage
+
+-   increase hp treshold for healing elixir
+
+-   suggest a personal cd as a last resort
+
+-   Merge branch 'master' of https://github.com/Sidoine/Ovale into dh
+
+-   Merge branch 'master' of https://github.com/Sidoine/Ovale into paladin-fixes
+
+-   Add check for consecrated hammer talent
+
+-   "Play Defensively" as literal string
+
+-   Add Soul Barrier in the mix
+
+-   Only use Soul Carver when we need the soul fragments
+
+-   better use of DebuffExpires
+
+-   Actually add that checkbox opt_demonhunter_vengeance_defensive
+
+-   if layout
+
+-   Add VengeancePlayDefensively()
+
+-   Add checkbox for AOE
+
+-   Better interrupts ?
+
+-   remove icyveins_demonhunter_havoc
+
+-   Revert "Remove Icy Veins Havoc rotation"
+
+    This reverts commit 4b103beb059948aec90a4f9df25f135812e67713.
+
+-   Add interrupt actions for vengeance
+
+-   update simc Havoc script
+
+-   Interrupt ordering (group sigils together)
+
+-   Merge branch 'master' of https://github.com/Sidoine/Ovale into dh
+
+-   Use Fury() instead of DemonicFury()
+
+-   Remove Demonic Fury and add Fury as resource (where needed)
+
+-   Reverse logic of cooldown.spell.ready
+
+-   tag fury of the ilidari as "main"
+
+-   Implement consume magic as an interrupr
+
+-   Remove Icy Veins Havoc rotation

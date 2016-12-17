@@ -110,7 +110,7 @@ V['skins'] = {
 		['itemUpgrade'] = true,
 		["addonManager"] = true,
 		["mirrorTimers"] = true,
-		["objectiveTracker"] = true,
+		["objectiveTracker"] = false,
 		["orderhall"] = true,
 		["artifact"] = true,
 		["talkinghead"] = true,
@@ -120,7 +120,7 @@ V['skins'] = {
 }
 
 V['tooltip'] = {
-	['enable'] = true,
+	['enable'] = false,
 }
 
 V['unitframe'] = {

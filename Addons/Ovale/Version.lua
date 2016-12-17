@@ -32,7 +32,7 @@ local self_userVersion = {}
 local self_timer
 
 local MSG_PREFIX = Ovale.MSG_PREFIX
-local OVALE_VERSION = "7.1.4.1"
+local OVALE_VERSION = "7.1.4.2"
 local REPOSITORY_KEYWORD = "@" .. "project-version" .. "@"
 
 do

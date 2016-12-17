@@ -1,12 +1,12 @@
-tag 74539af1c1f82eebaccd7c81edaa23a90ce6a3f8 70100.07
+tag 842d3a9359fea81bb67d2e9c0412c390ce14e9c7 70100.11
 Author:	DengSir <tdaddon@163.com>
-Date:	Fri Dec 2 18:02:17 2016 +0800
+Date:	Fri Dec 16 23:35:29 2016 +0800
 
-''
+Remove debug logs
 
-commit 23c8a5161e53faf1fef4df75d0957876e318e712
+commit 165d86663b3de6f51f4545b55d200053e083a542
 Author: DengSir <tdaddon@163.com>
-Date:   Fri Dec 2 18:00:54 2016 +0800
+Date:   Fri Dec 16 23:26:10 2016 +0800
 
-    enable-nolib-creation
+    Remove debug log
 
