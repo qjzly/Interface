@@ -29,9 +29,9 @@ local cfg = {
 	font = mainFont,
 	fontflag = "OUTLINE",				--Tooltip显示的字体描边。
 	fontsize_header = 15,				--Tooltip显示的名称字体大小。
-	fontsize_normal = 12,				--Tooltip显示的普通字体大小。
-	fontsize_small = 12,				--Tooltip显示的装备比较字体大小。
-	fontsize_value = 12,				--Tooltip显示的血量/能量值字体大小。
+	fontsize_normal = 13,				--Tooltip显示的普通字体大小。
+	fontsize_small = 13,				--Tooltip显示的装备比较字体大小。
+	fontsize_value = 13,				--Tooltip显示的血量/能量值字体大小。
 	scale = 1,							--Tooltip缩放，默认为1，小于1缩小，大于1放大。
 	opacity = 0.6,						--Tooltip背景透明度，取值在0和1之间，0完全透明，1完全不透明。
 	point = {"BOTTOMRIGHT", -250, 220},	--Tooltip不跟随鼠标时的位置，BOTTOMRIGHT代表右下，数字代表偏移值。
@@ -64,7 +64,7 @@ local cfg = {
 	bgFile = [[Interface\ChatFrame\ChatFrameBackground.blp]], 
 	edgeFile = [[Interface\AddOns\RayWatcher\media\glowTex.tga]], 
 	edgeSize = 3,
-	insets = { left = 2, right = 2, top = 2, bottom = 2 }
+	insets = { left = 3, right = 3, top = 3, bottom = 3 }
 	},
 	normal = "Interface\\AddOns\\FreebTip\\media\\normal",
 	pushed = "Interface\\AddOns\\FreebTip\\media\\pushed",
@@ -415,7 +415,7 @@ local function OnSetUnit(self)
 				elseif (gRank and gRankId) then
 					gRank = gRank.."("..gRankId..")"
 				end
-				GameTooltipTextLeft2:SetFormattedText("|cffE41F9B<%s>|r |cffA0A0A0%s|r", guild, gRank or "")
+				GameTooltipTextLeft2:SetFormattedText("|cff00ff10<%s>|r |cff00ff10%s|r", guild, gRank or "")
 			end
 
 			if (cfg.factionIconAlpha ~= 0) then

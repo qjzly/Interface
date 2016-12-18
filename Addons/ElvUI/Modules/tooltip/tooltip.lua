@@ -371,12 +371,12 @@ function TT:GameTooltip_OnTooltipSetUnit(tt)
 		end
 
 		if(realm and realm ~= "") then
-			if(isShiftKeyDown) then
+			-- if(isShiftKeyDown) then
 				name = name.."-"..realm
-			elseif(relationship == LE_REALM_RELATION_COALESCED) then
-				name = name..FOREIGN_SERVER_LABEL
+			if(relationship == LE_REALM_RELATION_COALESCED) then
+				-- name = name..FOREIGN_SERVER_LABEL
 			elseif(relationship == LE_REALM_RELATION_VIRTUAL) then
-				name = name..INTERACTIVE_SERVER_LABEL
+				-- name = name..INTERACTIVE_SERVER_LABEL
 			end
 		end
 
@@ -390,7 +390,7 @@ function TT:GameTooltip_OnTooltipSetUnit(tt)
 
 		local lineOffset = 2
 		if(guildName) then
-			if(guildRealm and isShiftKeyDown) then
+			if(guildRealm) then
 				guildName = guildName.."-"..guildRealm
 			end
 
@@ -415,7 +415,7 @@ function TT:GameTooltip_OnTooltipSetUnit(tt)
 		end
 
 		--High CPU usage, restricting it to shift key down only.
-		if(self.db.inspectInfo and isShiftKeyDown) then
+		if(self.db.inspectInfo) then
 			self:ShowInspectInfo(tt, unit, level, color.r, color.g, color.b, 0)
 		end
 	else

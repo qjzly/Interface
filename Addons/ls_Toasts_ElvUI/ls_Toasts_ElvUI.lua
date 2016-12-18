@@ -8,7 +8,7 @@ function LST:SkinToast(toast, toastType)
 	toast.BG:SetAlpha(1)
 	toast.Border:SetTexture([[Interface\AddOns\ls_Toasts_ElvUI\media\toast-border.tga]])
 	toast.Icon:SetTexCoord(.08, .92, .08, .92)
-	toast.Title:SetFont([[Interface\AddOns\ls_Toasts_ElvUI\media\PT_Sans_Narrow.ttf]], 16)
+	toast.Title:SetFont("Fonts\\FRIZQT__.TTF", 16)
 	toast.Title:SetPoint("TOPLEFT", 55, -12)
 	
 	if toast.IconBorder then

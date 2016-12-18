@@ -6,7 +6,7 @@ local _, _G = _, _G
 local LIL = LibItemLevel
 local GameTooltip = _G["GameTooltip"]
 
-local prefixColor, detailColor = "|cffffeeaa", "|cffffffff"
+local prefixColor, detailColor = "|cffffc800", "|cffffc800"
 local lastScanRequest, nextScanRequest, nextScanInterval = 0, 0, 0
 local lastInspectRequest, nextInspectRequest = 0, 0
 local currentUNIT, currentGUID, currentINS, forceInspect
