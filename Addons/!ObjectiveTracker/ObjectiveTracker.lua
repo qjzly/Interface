@@ -201,7 +201,7 @@ do  --世界任务 标题背景 美化
 	local bg = header_bonus:CreateTexture(nil, "ARTWORK")
 	bg:SetTexture([[Interface\LFGFrame\UI-LFG-SEPARATOR]])
 	bg:SetTexCoord(0, 0.6640625, 0, 0.3125)
-	bg:SetVertexColor(170 * 0.7, 211 * 0.7, 114 * 0.7)
+	bg:SetVertexColor(r * 0.7, g * 0.7, b * 0.7)
 	bg:SetPoint("BOTTOMLEFT", -30, -4)
 	bg:SetSize(210, 30)
 	header_bonus.Text:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE")
@@ -339,9 +339,9 @@ hooksecurefunc(BONUS_OBJECTIVE_TRACKER_MODULE, "AddProgressBar", function(self, 
 
 		bar.BarBG:Hide()
 		bar.BarFrame:Hide()
-		bar:SetStatusBarTexture(C.media.backdrop)
-		-- bar:SetStatusBarColor(237/255, 82/255, 46/255)
-		bar:SetHeight(14)
+		bar:SetStatusBarTexture([[Interface\AddOns\!ObjectiveTracker\Media\gloss.tga]])
+		bar:SetStatusBarColor(237/255, 82/255, 46/255)
+		bar:SetHeight(16)
 
 		icon:SetMask(nil)
 		icon:SetSize(24, 24)

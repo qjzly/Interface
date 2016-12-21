@@ -7,7 +7,7 @@
 
 Set_xCT.lua
 
-ann.lua
+buttoncollector.lua
 
 ##聊天频道增强
 chat.lua

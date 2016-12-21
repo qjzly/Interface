@@ -79,10 +79,8 @@ local PET_TYPE_SUFFIX = PET_TYPE_SUFFIX
 local PVP = PVP
 local RAID_CLASS_COLORS = RAID_CLASS_COLORS
 local TARGET = TARGET
-local UnitBattlePetLevel = UnitBattlePetLevel
-local UnitBattlePetType = UnitBattlePetType
 
---Global variables that we don't cache, list them here for mikk's FindGlobals script
+-- Global variables that we don't cache, list them here for mikk's FindGlobals script
 -- GLOBALS: ElvUI_ContainerFrame, RightChatPanel, TooltipMover, UIParent, ElvUI_KeyBinder
 -- GLOBALS: ItemRefCloseButton, RightChatToggleButton, BNToastFrame, MMHolder, GameTooltipText
 -- GLOBALS: BNETMover, ItemRefTooltip, InspectFrame,  GameTooltipHeaderText, GameTooltipTextSmall
@@ -443,7 +441,7 @@ function TT:GameTooltip_OnTooltipSetUnit(tt)
 			if(isPetWild or isPetCompanion) then
 				level = UnitBattlePetLevel(unit)
 
-				local petType = PET_TYPE_SUFFIX[UnitBattlePetType(unit)]
+				local petType = _G["BATTLE_PET_DAMAGE_NAME_"..UnitBattlePetType(unit)]--PET_TYPE_SUFFIX[UnitBattlePetType(unit)]
 				if creatureType then
 					creatureType = format("%s %s", creatureType, petType)
 				else

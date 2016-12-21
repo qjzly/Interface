@@ -16,9 +16,10 @@ local defaults = {
 	drawSwipe = true,
 
 	--what font to use
-	fontFace = function()
-		return _G['STANDARD_TEXT_FONT']
-	end,
+	-- fontFace = function()
+		-- return _G['STANDARD_TEXT_FONT']
+	-- end,
+	fontFace = [[Interface\AddOns\!aMini\Media\ROADWAY.TTF]],
 
 	--the base font size to use at a scale of 1
 	fontSize = 18,

@@ -1,6 +1,0 @@
-<Ui>
-	<Script file="rematch enUS.lua"/>
-	<Script file="rematch deDE.lua"/>
-	<Script file="rematch zhCN.lua"/>
-	<Script file="rematch zhTW.lua"/>
-</Ui>

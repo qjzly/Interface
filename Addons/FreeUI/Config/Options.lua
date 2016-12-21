@@ -17,9 +17,9 @@ C.media = {
 	["texture"]    = "Interface\\AddOns\\FreeUI\\Media\\statusbar", 					-- statusbar texture
 
 	["font"] = {
-		["normal"] 		= "Fonts\\FRIZQT__.ttf",	-- 游戏主字体
-		["unitname"] 	= "Fonts\\FRIZQT__.ttf",	-- 人物头上的名字
-		["damage"] 		= "Fonts\\skurri.ttf",		-- 伤害
+		["normal"] 		= "Fonts\\ARKai_T.ttf",	-- 游戏主字体
+		["unitname"] 	= "Fonts\\ARKai_C.ttf",	-- 人物头上的名字
+		["damage"] 		= "Fonts\\ARKai_C.ttf",		-- 伤害
 		["header"]		= "Fonts\\MORPHEUS.ttf",	-- 标题
 		["chat"]		= "Fonts\\ARIALN.ttf",		-- 聊天
 		["pixel"]		= "Interface\\AddOns\\FreeUI\\Media\\pixel.ttf",	-- 英文像素
@@ -28,7 +28,7 @@ C.media = {
 
 C.fontCN = {
 	["pixel"] = {	-- 中文像素
-		"Fonts\\pixfontCN.ttf",
+		"Fonts\\ARKai_C.ttf",
 		10,
 		"OUTLINEMONOCHROME",
 	},
@@ -169,9 +169,9 @@ C["notifications"] = {
 C["tooltip"] = {
 	["enable"] = true,		-- enable tooltip and modules
 	["cursor"] = false,		-- tooltip at mouse
-	["position"] = {"BOTTOMRIGHT", -25, 30},	-- tooltip position
+	["position"] = {"BOTTOMRIGHT", -250, 300},	-- tooltip position
 	["ilvlspec"] = true,		-- show gear info and specialization on tooltip
-	["sbHeight"] = 2,
+	["sbHeight"] = 1,
 	["scale"] = 1,
 	["pBar"] = false,
 	["fadeOnUnit"] = false,

@@ -48,31 +48,50 @@ ns.watchers ={
                 { spellID = 164547, unitId = "player", caster = "player", filter = "BUFF" },
                 --日光增效
                 { spellID = 164545, unitId = "player", caster = "player", filter = "BUFF" },
+
+				-- 激活
+				{ spellID = 29166, unitId = "player", caster = "player", filter = "BUFF" },
+				
 				-- 节能施法
 				{ spellID = 16870, unitId = "player", caster = "player", filter = "BUFF" },
 				-- 生命绽放
 				{ spellID = 33763, unitId = "player", caster = "player", filter = "BUFF" },
+				-- 神器
+				{ spellID = 208253, unitId = "player", caster = "player", filter = "BUFF" },
+				-- 野性成长
+				{ spellID = 48438, unitId = "player", caster = "player", filter = "BUFF" },
 				-- 回春術
 				{ spellID = 774, unitId = "player", caster = "player", filter = "BUFF" },
 				-- 癒合
 				{ spellID = 8936, unitId = "player", caster = "player", filter = "BUFF" },
 				-- 回春術(萌芽)
 				{ spellID = 155777, unitId = "player", caster = "player", filter = "BUFF" },
+				-- 化身：生命之树
+				{ spellID = 117679, unitId = "player", caster = "player", filter = "BUFF" },
+				
 				-- 狂暴猫
 				{ spellID = 106951, unitId = "player", caster = "player", filter = "BUFF" },
 				-- 野蛮咆哮(猫)
 				{ spellID = 52610, unitId = "player", caster = "player", filter = "BUFF" },
 				-- 狂奔怒吼
 				{ spellID = 77761, unitId = "player", caster = "player", filter = "BUFF" },
-				-- 激活
-				{ spellID = 29166, unitId = "player", caster = "player", filter = "BUFF" },
+
 				-- 树皮术
 				{ spellID = 22812, unitId = "player", caster = "player", filter = "BUFF" },
+				-- 铁木树皮
 				{ spellID = 102342, unitId = "player", caster = "player", filter = "BUFF" },
+				-- 乌索尔的印记
+				{ spellID = 192083, unitId = "player", caster = "player", filter = "BUFF" },
+				-- 神器：沉睡者之怒
+				{ spellID = 200851, unitId = "player", caster = "player", filter = "BUFF" },
+				-- 铁鬃
+				{ spellID = 192081, unitId = "player", caster = "player", filter = "BUFF" },
 				-- 生存本能
 				{ spellID = 61336, unitId = "player", caster = "player", filter = "BUFF" },
 				-- 狂暴恢复
 				{ spellID = 22842, unitId = "player", caster = "player", filter = "BUFF" },
+				-- 化身：乌索克的守护者
+				{ spellID = 102558, unitId = "player", caster = "player", filter = "BUFF" },
 		},
 		{
 			name = "目标debuff",
@@ -82,6 +101,12 @@ ns.watchers ={
 				-- 挫志咆哮(熊)
 				{ spellID =    99, unitId = "target", caster = "player", filter = "DEBUFF" },
 				
+				-- 野性成长
+				{ spellID = 48438, unitId = "target", caster = "player", filter = "BUFF" },
+				-- 生命之种
+				{ spellID = 48504, unitId = "target", caster = "player", filter = "BUFF" },
+				-- 塞纳里奥结界
+				{ spellID = 102351, unitId = "target", caster = "player", filter = "BUFF" },
 				-- 生命绽放
 				{ spellID = 33763, unitId = "target", caster = "player", filter = "BUFF" },
 				-- 回春術
@@ -92,8 +117,15 @@ ns.watchers ={
 				{ spellID = 155777, unitId = "target", caster = "player", filter = "BUFF" },
 				-- 缠绕
 				{ spellID = 339, unitId = "target", caster = "player", filter = "BUFF" },
+				-- 群体缠绕
 				{ spellID = 102359, unitId = "target", caster = "player", filter = "BUFF" },
-
+				-- 激活
+				{ spellID = 29166, unitId = "target", caster = "player", filter = "BUFF" },
+				-- 树皮术
+				{ spellID = 22812, unitId = "target", caster = "player", filter = "BUFF" },
+				-- 铁木树皮
+				{ spellID = 102342, unitId = "target", caster = "player", filter = "BUFF" },
+				
 				-- 割裂(猫)
 				{ spellID =  1079, unitId = "target", caster = "player", filter = "DEBUFF" },
 				-- 斜掠(猫)
@@ -102,24 +134,21 @@ ns.watchers ={
 				{ spellID =  164812, unitId = "target", caster = "player", filter = "DEBUFF" },
 				-- 阳炎术
 				{ spellID =  164815, unitId = "target", caster = "player", filter = "DEBUFF" },
-				-- 生命绽放
-				{ spellID = 33763, unitId = "target", caster = "player", filter = "BUFF" },			
+
 				-- 野蛮咆哮(猫)
 				{ spellID = 52610, unitId = "target", caster = "player", filter = "DEBUFF" },
 				-- 阳炎术
 				{ spellID = 93402, unitId = "target", caster = "player", filter = "DEBUFF" },
 				-- 割碎
 				{ spellID = 33878, unitId = "target", caster = "player", filter = "DEBUFF" },
-				-- 阳炎术
-				{ spellID = 93402, unitId = "target", caster = "player", filter = "DEBUFF",},
 		},
 		{
 			name = "玩家技能CD",
 			direction = "RIGHT",
 			setpoint = positions.player_cd,
-			size = 22,
-				-- 狂暴恢复
-				--{ spellID = 22842, filter = "CD" },
+			size = 36,
+				-- 
+				-- { spellID = 33891, filter = "CD" },
 		},
 	},
 	["HUNTER"] = {

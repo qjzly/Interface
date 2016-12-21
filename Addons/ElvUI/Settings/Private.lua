@@ -120,7 +120,7 @@ V['skins'] = {
 }
 
 V['tooltip'] = {
-	['enable'] = false,
+	['enable'] = true,
 }
 
 V['unitframe'] = {

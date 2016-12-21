@@ -1,0 +1,12 @@
+tag 0a449d41fc92abb2fc997e64fcdee5928312df43 70100.08
+Author:	DengSir <tdaddon@163.com>
+Date:	Sat Dec 3 01:38:24 2016 +0800
+
+''
+
+commit 03177a67c3cd8db860c4aa2b5388cdaddc3d5f61
+Author: DengSir <tdaddon@163.com>
+Date:   Sat Dec 3 01:37:31 2016 +0800
+
+    Fix: Locale
+

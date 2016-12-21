@@ -3,7 +3,8 @@ local GNOME, Sequences = ...
 ------------------
 ----- Shaman
 ------------------
-Sequences["增强"] = {   
+Sequences["增强"] = {
+specID = 263,
 PreMacro = [[
 /targetenemy [noharm][dead]
 /cast [combat] 毁灭之风
